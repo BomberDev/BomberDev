@@ -14,6 +14,8 @@ public abstract class BomberDrawable implements Drawable {
 
 	protected final BomberEntity entity;
 	protected SpriteManagerDefaultImpl spriteManager;
+	protected boolean visible;
+	protected int renderingSize;
 
 	public BomberDrawable(String filename, GameCanvas canvas, int renderingSize,
 			int maxSpriteNumber, BomberEntity entity) {
@@ -21,6 +23,16 @@ public abstract class BomberDrawable implements Drawable {
 		spriteManager = new SpriteManagerDefaultImpl(new DrawableImage(
 				filename, canvas), renderingSize, maxSpriteNumber);
 		this.spriteManager.setTypes("right", "left", "down", "up");
+		this.visible=true;
+		this.renderingSize=renderingSize;
+	}
+	/**
+	 * Set types like "right" "right" "down" "up"\n
+	 * Appear in the first line of the picture should be the first to write
+	 * @param s 4 types
+	 */
+	public void setTypes(String... s){
+		this.spriteManager.setTypes(s);
 	}
 
 	/**
@@ -32,13 +44,17 @@ public abstract class BomberDrawable implements Drawable {
 	 *            <li>(1,0) for right direction;</li>
 	 *            <li>(-1,0) for left direction;</li>
 	 *            <li>(0,1) for down direction;</li>
-	 *            <li>(0,-1) for right direction;</li>
+	 *            <li>(0,-1) for up direction;</li>
 	 *            </ul>
 	 */
 	public abstract void animIdle(Point direction);
 
 	@Override
 	public void draw(Graphics g) {
-		this.spriteManager.draw(g, this.entity.getPosition());
+		if(visible)this.spriteManager.draw(g, this.entity.getPosition());
+	}
+	
+	public int getRenderingSize(){
+		return this.renderingSize;
 	}
 }

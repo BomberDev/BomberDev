@@ -14,11 +14,20 @@ public class CharacterDrawable extends BomberDrawable {
 
 	@Override
 	public void animIdle(Point direction) {
-		// TODO: implement
+		int x = direction.x;
+		int y = direction.y;
+		if(x<0)this.spriteManager.setType("left");
+		else if(x>0)this.spriteManager.setType("right");
+		else if(y<0)this.spriteManager.setType("up");
+		else this.spriteManager.setType("down");//(0,1) or (0,0)
 	}
 
+	public void reset(){
+		this.spriteManager.reset();
+	}
+	
 	public void animMoving(Point direction) {
-		// TODO: implement
+		this.spriteManager.increment();
 	}
 
 	public void animPlanting() {
@@ -27,5 +36,6 @@ public class CharacterDrawable extends BomberDrawable {
 
 	public void animDying() {
 		// TODO: implement
+		this.visible=false;
 	}
 }

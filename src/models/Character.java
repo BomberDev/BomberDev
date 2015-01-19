@@ -58,6 +58,7 @@ public class Character implements BomberEntity, Movable, MoveBlocker {
 
 	private void die() {
 		this.drawable.animDying();
+		//TODO implement
 	}
 
 	public void incrementBombStock() {
@@ -75,31 +76,36 @@ public class Character implements BomberEntity, Movable, MoveBlocker {
 	@Override
 	public void oneStepMove() {
 		// TODO Auto-generated method stub
-
+		
+		//Walking plant
+		SpeedVector sv = this.getSpeedVector();
+		Point dit = sv.getDirection();
+		int speed = sv.getSpeed();
+		this.drawable.animIdle(sv.getDirection());
+		if(!(speed==0||(dit.x==0&&dit.y==0)))this.drawable.animMoving(sv.getDirection());
+		else this.drawable.reset();
 	}
 
 	@Override
 	public Rectangle getBoundingBox() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Rectangle(this.drawable.getRenderingSize(), this.drawable.getRenderingSize());
 	}
 
 	@Override
 	public Point getPosition() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.position;
 	}
 
 	@Override
 	public SpeedVector getSpeedVector() {
-		// TODO Auto-generated method stub
-		return null;
+		return null;//(SpeedVector)this.SpeedVector;
 	}
 
 	@Override
 	public void setSpeedVector(SpeedVector m) {
 		// TODO Auto-generated method stub
-
+		//this.speedVector.setDirection(m.getDirection);
+		//this.speedVector.setSpeed(m.getSpeed);
 	}
 
 }
