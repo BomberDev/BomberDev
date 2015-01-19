@@ -1,15 +1,15 @@
 package drawable;
 
-import gameframework.drawing.SpriteManager;
-
+import gameframework.drawing.GameCanvas;
 import java.awt.Point;
 
 import models.BomberEntity;
 
 public class BombDrawable extends BomberDrawable {
 
-	public BombDrawable(SpriteManager manager, BomberEntity entity) {
-		super(manager, entity);
+	public BombDrawable(String filename, GameCanvas canvas, int renderingSize,
+			int maxSpriteNumber, BomberEntity entity) {
+		super(filename, canvas, maxSpriteNumber, maxSpriteNumber, entity);
 	}
 
 	@Override

@@ -27,8 +27,7 @@ public class Player extends GameMovable implements GameEntity, Drawable,
 			int maxSpriteNumber, MoveStrategy strategy) {
 		spriteManager = new SpriteManagerDefaultImpl(new DrawableImage(
 				filename, canvas), renderingSize, maxSpriteNumber);
-
-		this.spriteManager.setTypes("1", "2", "3", "4", "5", "6");
+		this.spriteManager.setTypes("right", "left", "down", "up");
 		strategy.getSpeedVector().setDirection(position);
 		strategy.getSpeedVector().setSpeed(5);
 
@@ -106,7 +105,7 @@ public class Player extends GameMovable implements GameEntity, Drawable,
 	public void oneStepMoveAddedBehavior() {
 		int x = (int) this.speedVector.getDirection().distance(0, 0);
 		if (!this.increment && !inAction && x != 0) {
-			this.setType("3");
+			this.setType("1");
 			this.increment = true;
 		}
 		if (this.increment && !inAction && x == 0) {

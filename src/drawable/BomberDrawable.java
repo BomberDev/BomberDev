@@ -1,7 +1,8 @@
 package drawable;
 
 import gameframework.drawing.Drawable;
-import gameframework.drawing.SpriteManager;
+import gameframework.drawing.DrawableImage;
+import gameframework.drawing.GameCanvas;
 import gameframework.drawing.SpriteManagerDefaultImpl;
 
 import java.awt.Graphics;
@@ -14,8 +15,12 @@ public abstract class BomberDrawable implements Drawable {
 	protected final BomberEntity entity;
 	protected SpriteManagerDefaultImpl spriteManager;
 
-	public BomberDrawable(SpriteManager manager, BomberEntity entity) {
+	public BomberDrawable(String filename, GameCanvas canvas, int renderingSize,
+			int maxSpriteNumber, BomberEntity entity) {
 		this.entity = entity;
+		spriteManager = new SpriteManagerDefaultImpl(new DrawableImage(
+				filename, canvas), renderingSize, maxSpriteNumber);
+		this.spriteManager.setTypes("right", "left", "down", "up");
 	}
 
 	/**

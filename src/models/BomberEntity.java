@@ -1,7 +1,6 @@
 package models;
 
 import gameframework.game.GameEntity;
-
 import java.awt.Point;
 
 public interface BomberEntity extends GameEntity {

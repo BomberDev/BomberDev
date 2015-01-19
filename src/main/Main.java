@@ -11,7 +11,7 @@ import gameframework.gui.GameWindow;
 import gameframework.motion.MoveStrategyKeyboard;
 import gameframework.motion.MoveStrategyRandom;
 import levels.GameLevel1;
-import other.ActionKeyboard;
+import other.PlayerKeyboard;
 import player.Player;
 import models.IndestructibleBrick;
 
@@ -32,16 +32,17 @@ public class Main {
 		GameLevel level = new GameLevel1(gameData);
 		gameData.addLevel(level);
 
+		
 		// STRATEGIES
 
-		MoveStrategyKeyboard strategyKeyboard = new MoveStrategyKeyboard(false);
+		MoveStrategyKeyboard strategyKeyboard = new PlayerKeyboard();
 		MoveStrategyRandom strategyRandom = new MoveStrategyRandom();
 
 		// PLAYERS
 		Player player = null;
 		Player random = null;
 		try{
-		player = new Player("/resource/r1.png", gameData.getCanvas(),
+		player = new Player("bomberman", gameData.getCanvas(),
 				110, 10, strategyKeyboard);
 		
 
@@ -52,7 +53,8 @@ public class Main {
 			System.exit(0);
 		}
 		
-		ActionKeyboard playerAction = new ActionKeyboard(player);
+		((PlayerKeyboard)strategyKeyboard).setEntity(player);
+
 		random.setPoint(50, 50);
 
 		// ADD ENTITIES
@@ -70,7 +72,6 @@ public class Main {
 		GameCanvas canvas = gameData.getCanvas();
 
 		canvas.addKeyListener(strategyKeyboard);
-		canvas.addKeyListener(playerAction);
 		
 		GameWindow gameWindow = new GameWindow("BonberDev", canvas, config,
 				score, life);
