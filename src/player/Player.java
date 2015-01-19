@@ -6,41 +6,39 @@ import gameframework.drawing.DrawableImage;
 import gameframework.drawing.GameCanvas;
 import gameframework.drawing.SpriteManagerDefaultImpl;
 import gameframework.game.GameEntity;
+import gameframework.motion.GameMovable;
+import gameframework.motion.GameMovableDriverDefaultImpl;
 import gameframework.motion.Movable;
-import gameframework.motion.SpeedVector;
+import gameframework.motion.MoveStrategy;
 
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.Rectangle;
 
-public class Player implements GameEntity, Drawable, Movable,
-		ObjectWithBoundedBox {
+public class Player extends GameMovable implements GameEntity, Drawable,
+		Movable, ObjectWithBoundedBox {
 
 	protected SpriteManagerDefaultImpl spriteManager;
-	protected Point position;
-	protected boolean increment;
+	protected boolean increment = false;
 	protected boolean inAction;
-	protected SpeedVector speedVector;
-	protected int step;
+	protected int step = 1;
 	protected int maxStep;
 
 	public Player(String filename, GameCanvas canvas, int renderingSize,
-			int maxSpriteNumber, SpeedVector sv) {
+			int maxSpriteNumber, MoveStrategy strategy) {
 		spriteManager = new SpriteManagerDefaultImpl(new DrawableImage(
 				filename, canvas), renderingSize, maxSpriteNumber);
-		this.position = new Point(0, 0);
+
 		this.spriteManager.setTypes("1", "2", "3", "4", "5", "6");
-		this.increment = false;
-		this.step = 1;
-		this.speedVector = sv;
+		strategy.getSpeedVector().setDirection(position);
+		strategy.getSpeedVector().setSpeed(5);
+
+		GameMovableDriverDefaultImpl driver = new GameMovableDriverDefaultImpl();
+		driver.setStrategy(strategy);
+		setDriver(driver);
 	}
 
 	public void setPoint(int x, int y) {
 		this.position.setLocation(x, y);
-	}
-
-	public Point getPoint() {
-		return this.position;
 	}
 
 	public void increment() {
@@ -96,32 +94,16 @@ public class Player implements GameEntity, Drawable, Movable,
 
 	@Override
 	public void draw(Graphics g) {
-		this.oneStepMove();
 		spriteManager.draw(g, this.position);
 	}
 
 	@Override
 	public Rectangle getBoundingBox() {
-		return null;
+		return new Rectangle(100, 100);
 	}
 
 	@Override
-	public Point getPosition() {
-		return this.position;
-	}
-
-	@Override
-	public SpeedVector getSpeedVector() {
-		return this.speedVector;
-	}
-
-	@Override
-	public void setSpeedVector(SpeedVector m) {
-		this.speedVector = m;
-	}
-
-	@Override
-	public void oneStepMove() {
+	public void oneStepMoveAddedBehavior() {
 		int x = (int) this.speedVector.getDirection().distance(0, 0);
 		if (!this.increment && !inAction && x != 0) {
 			this.setType("3");
@@ -133,7 +115,6 @@ public class Player implements GameEntity, Drawable, Movable,
 		}
 		if (this.increment)
 			increment();
-		this.position.x += this.speedVector.getDirection().x * this.speedVector.getSpeed();
-		this.position.y += this.speedVector.getDirection().y * this.speedVector.getSpeed();
+
 	}
 }
