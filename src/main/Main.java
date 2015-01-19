@@ -13,7 +13,7 @@ import gameframework.motion.MoveStrategyRandom;
 import levels.GameLevel1;
 import other.ActionKeyboard;
 import player.Player;
-import decor.IndestructibleBrick;
+import models.IndestructibleBrick;
 
 public class Main {
 
@@ -38,14 +38,21 @@ public class Main {
 		MoveStrategyRandom strategyRandom = new MoveStrategyRandom();
 
 		// PLAYERS
-
-		Player player = new Player("/resource/r1.png", gameData.getCanvas(),
+		Player player = null;
+		Player random = null;
+		try{
+		player = new Player("/resource/r1.png", gameData.getCanvas(),
 				110, 10, strategyKeyboard);
-		ActionKeyboard playerAction = new ActionKeyboard(player);
+		
 
-		Player random = new Player("/resource/r1.png", gameData.getCanvas(),
+		random = new Player("/resource/r1.png", gameData.getCanvas(),
 				110, 10, strategyRandom);
-
+		}catch(IllegalArgumentException e){
+			System.out.println("Error:"+e.getLocalizedMessage()+"\n at Main.java an image can't be found");
+			System.exit(0);
+		}
+		
+		ActionKeyboard playerAction = new ActionKeyboard(player);
 		random.setPoint(50, 50);
 
 		// ADD ENTITIES
@@ -64,7 +71,7 @@ public class Main {
 
 		canvas.addKeyListener(strategyKeyboard);
 		canvas.addKeyListener(playerAction);
-
+		
 		GameWindow gameWindow = new GameWindow("BonberDev", canvas, config,
 				score, life);
 
@@ -75,8 +82,3 @@ public class Main {
 
 	}
 }
-// entity createur
-// cooldown controle
-// flag controle
-// AI controle
-//

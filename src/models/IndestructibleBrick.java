@@ -7,6 +7,10 @@ public class IndestructibleBrick extends Brick {
 	public IndestructibleBrick(Point position) {
 		super(position);
 	}
+	
+	public IndestructibleBrick(){
+		this(new Point(0,0));
+	}
 
 	@Override
 	public void onTakingDamage(int damage) {
