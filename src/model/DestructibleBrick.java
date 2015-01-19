@@ -1,4 +1,4 @@
-package src.bomberdev.model;
+package models;
 
 import java.awt.Point;
 

@@ -1,4 +1,4 @@
-package src.bomberdev.drawable;
+package drawable;
 
 import gameframework.drawing.Drawable;
 import gameframework.drawing.SpriteManager;
@@ -7,7 +7,7 @@ import gameframework.drawing.SpriteManagerDefaultImpl;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import src.bomberdev.model.BomberEntity;
+import models.BomberEntity;
 
 public abstract class BomberDrawable implements Drawable {
 

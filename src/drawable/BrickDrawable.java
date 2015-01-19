@@ -1,14 +1,13 @@
-package src.bomberdev.drawable;
+package drawable;
+
+import gameframework.drawing.SpriteManager;
 
 import java.awt.Point;
 
-import gameframework.drawing.SpriteManager;
-import src.bomberdev.model.BomberEntity;
+import models.BomberEntity;
 
 public class BrickDrawable extends BomberDrawable {
 
-	
-	
 	public BrickDrawable(SpriteManager manager, BomberEntity entity) {
 		super(manager, entity);
 	}
@@ -16,7 +15,7 @@ public class BrickDrawable extends BomberDrawable {
 	@Override
 	public void animIdle(Point direction) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void animDestroy() {
