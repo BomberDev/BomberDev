@@ -12,6 +12,7 @@ import gameframework.motion.Movable;
 import gameframework.motion.MoveStrategy;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Rectangle;
 
 public class Player extends GameMovable implements GameEntity, Drawable,
@@ -20,8 +21,6 @@ public class Player extends GameMovable implements GameEntity, Drawable,
 	protected SpriteManagerDefaultImpl spriteManager;
 	protected boolean increment = false;
 	protected boolean inAction;
-	protected int step = 1;
-	protected int maxStep;
 
 	public Player(String filename, GameCanvas canvas, int renderingSize,
 			int maxSpriteNumber, MoveStrategy strategy) {
@@ -41,24 +40,12 @@ public class Player extends GameMovable implements GameEntity, Drawable,
 	}
 
 	public void increment() {
-		this.step = (step >= 10 ? 3 : step + 1);
-		this.spriteManager.setIncrement(step - 1);
-		if (inAction && (step >= maxStep)) {
-			this.inAction = false;
-			this.setType(3);
-			this.spriteManager.reset();
-			this.lock();
-		}
+		this.spriteManager.increment();
 	}
 
-	public void setType(int type) {
-		this.setType("" + type);
-		this.spriteManager.reset();
-	}
 
 	public void setType(String type) {
 		this.spriteManager.setType(type);
-		this.step = 1;
 	}
 
 	public void lock() {
@@ -74,21 +61,6 @@ public class Player extends GameMovable implements GameEntity, Drawable,
 	}
 
 	public void action(int type) {
-		if (type == 1) {
-			if (inAction)
-				return;
-			this.maxStep = 10;
-			this.setType(1);
-			this.unlock();
-			this.inAction = true;
-		} else if (type == 2) {
-			if (inAction)
-				return;
-			this.maxStep = 9;
-			this.setType(2);
-			this.unlock();
-			this.inAction = true;
-		}
 	}
 
 	@Override
@@ -104,12 +76,16 @@ public class Player extends GameMovable implements GameEntity, Drawable,
 	@Override
 	public void oneStepMoveAddedBehavior() {
 		int x = (int) this.speedVector.getDirection().distance(0, 0);
-		if (!this.increment && !inAction && x != 0) {
-			this.setType("1");
+		Point p = this.speedVector.getDirection();
+		if (!inAction && x != 0) {
+			if(p.x>0)this.setType("right");
+			else if(p.x<0)this.setType("left");
+			else if(p.y>0)this.setType("down");
+			else this.setType("up");
 			this.increment = true;
 		}
 		if (this.increment && !inAction && x == 0) {
-			this.setType(3);
+			this.spriteManager.reset();
 			this.increment = false;
 		}
 		if (this.increment)

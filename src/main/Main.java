@@ -35,15 +35,15 @@ public class Main {
 		
 		// STRATEGIES
 
-		MoveStrategyKeyboard strategyKeyboard = new PlayerKeyboard();
+		PlayerKeyboard strategyKeyboard = new PlayerKeyboard();
 		MoveStrategyRandom strategyRandom = new MoveStrategyRandom();
 
 		// PLAYERS
 		Player player = null;
 		Player random = null;
 		try{
-		player = new Player("bomberman", gameData.getCanvas(),
-				110, 10, strategyKeyboard);
+		player = new Player("/resource/bomberman.png", gameData.getCanvas(),
+				110, 8, strategyKeyboard);
 		
 
 		random = new Player("/resource/r1.png", gameData.getCanvas(),
@@ -53,7 +53,7 @@ public class Main {
 			System.exit(0);
 		}
 		
-		((PlayerKeyboard)strategyKeyboard).setEntity(player);
+		strategyKeyboard.setEntity(player);
 
 		random.setPoint(50, 50);
 
