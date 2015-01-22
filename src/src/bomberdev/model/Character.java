@@ -84,8 +84,7 @@ public class Character implements BomberEntity, Movable, MoveBlocker {
 
 	@Override
 	public Point getPosition() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.position;
 	}
 
 	@Override
