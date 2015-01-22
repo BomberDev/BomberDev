@@ -1,4 +1,4 @@
-package src.bomberdev.model;
+package src.bomberdev.game;
 
 import gameframework.game.GameEntity;
 import gameframework.game.GameUniverseDefaultImpl;
@@ -6,6 +6,9 @@ import gameframework.game.GameUniverseDefaultImpl;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
+
+import src.bomberdev.model.Bomb;
+import src.bomberdev.model.BomberEntity;
 
 public class BomberUniverse extends GameUniverseDefaultImpl {
 

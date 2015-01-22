@@ -1,21 +1,24 @@
 package src.bomberdev.drawable;
 
-import gameframework.drawing.Drawable;
-import gameframework.drawing.SpriteManager;
+import gameframework.drawing.DrawableImage;
+import gameframework.drawing.GameCanvas;
 import gameframework.drawing.SpriteManagerDefaultImpl;
+import gameframework.game.GameEntity;
 
 import java.awt.Graphics;
 import java.awt.Point;
 
 import src.bomberdev.model.BomberEntity;
 
-public abstract class BomberDrawable implements Drawable {
+public abstract class BomberDrawable extends DrawableImage implements GameEntity {
 
 	protected final BomberEntity entity;
-	protected SpriteManagerDefaultImpl spriteManager;
-
-	public BomberDrawable(SpriteManager manager, BomberEntity entity) {
+	protected SpriteManagerDefaultImpl manager;
+	
+	public BomberDrawable(String filename, BomberEntity entity, GameCanvas canvas) {
+		super(filename, canvas);
 		this.entity = entity;
+		this.manager = new SpriteManagerDefaultImpl(this, 128, 8);
 	}
 
 	/**
@@ -30,10 +33,10 @@ public abstract class BomberDrawable implements Drawable {
 	 *            <li>(0,-1) for right direction;</li>
 	 *            </ul>
 	 */
-	public abstract void animIdle(Point direction);
+	public abstract void animIdle();
 
 	@Override
 	public void draw(Graphics g) {
-		this.spriteManager.draw(g, this.entity.getPosition());
+		this.manager.draw(g, this.entity.getPosition());
 	}
 }

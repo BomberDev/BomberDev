@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import src.bomberdev.drawable.BombDrawable;
+import src.bomberdev.drawable.BomberDrawable;
+import src.bomberdev.game.BomberUniverse;
 
 public class Bomb implements BomberEntity, MoveBlocker{
 
@@ -29,8 +31,8 @@ public class Bomb implements BomberEntity, MoveBlocker{
 	public Bomb(BomberUniverse univ, Character owner, Point position) {
 		this.univ = univ;
 		this.owner = owner;
-		this.power = owner.getFirePower();
-		this.area = owner.getFireArea();
+		this.power = owner.getBombPower();
+		this.area = owner.getBombArea();
 		this.position = position;
 		this.timer = configureTimer();
 	}
@@ -79,6 +81,16 @@ public class Bomb implements BomberEntity, MoveBlocker{
 
 	public int getAreaPower() {
 		return this.area;
+	}
+
+	@Override
+	public void setDrawable(BomberDrawable drawable) {
+		this.drawable = (BombDrawable) drawable;
+	}
+
+	@Override
+	public BomberUniverse getUniverse() {
+		return this.univ;
 	}
 	
 }

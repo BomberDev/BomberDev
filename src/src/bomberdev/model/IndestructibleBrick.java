@@ -2,10 +2,12 @@ package src.bomberdev.model;
 
 import java.awt.Point;
 
+import src.bomberdev.game.BomberUniverse;
+
 public class IndestructibleBrick extends Brick {
 
-	public IndestructibleBrick(Point position) {
-		super(position);
+	public IndestructibleBrick(BomberUniverse univ, Point position) {
+		super(univ, position);
 	}
 
 	@Override

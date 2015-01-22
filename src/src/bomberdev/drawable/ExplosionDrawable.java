@@ -1,21 +1,19 @@
 package src.bomberdev.drawable;
 
-import java.awt.Graphics;
+import gameframework.drawing.GameCanvas;
+
 import java.awt.Point;
 
 import src.bomberdev.model.BomberEntity;
-import gameframework.drawing.Drawable;
-import gameframework.drawing.SpriteManager;
 
 public class ExplosionDrawable extends BomberDrawable {
 
-	public ExplosionDrawable(SpriteManager manager, BomberEntity entity) {
-		super(manager, entity);
-		// TODO Auto-generated constructor stub
+	public ExplosionDrawable(String filename, BomberEntity entity, GameCanvas canvas) {
+		super(filename, entity, canvas);
 	}
 
 	@Override
-	public void animIdle(Point direction) {
+	public void animIdle() {
 		// TODO Auto-generated method stub
 		
 	}
