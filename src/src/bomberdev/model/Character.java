@@ -11,8 +11,10 @@ import gameframework.motion.blocking.MoveBlocker;
 
 public class Character implements BomberEntity, Movable, MoveBlocker {
 
-	/** The fire power of the bomb in number of tiles. */
+	/** The fire power of the bomb in number of health points taken when it damages. */
 	private int bombPower;
+	/** The area fire power of the bomb in number of tiles. */
+	private int bombArea;
 	/** The character's number of health points. */
 	private int healthPoints;
 	/** The character's position in number of tiles .*/
@@ -22,12 +24,29 @@ public class Character implements BomberEntity, Movable, MoveBlocker {
 	/** The drawable associated with this entity. */
 	private CharacterDrawable drawable;
 	
-	public Character() {
-		this(2, 1, new Point(1,1), 1);
+	private static final int DEFAULT_POWER;
+	private static final int DEFAULT_AREA;
+	private static final int DEFAULT_HEALTH;
+	private static final int DEFAULT_STOCK;
+	
+	static {
+		 DEFAULT_POWER = 1;
+		 DEFAULT_AREA = 2;
+		 DEFAULT_HEALTH = 1;
+		 DEFAULT_STOCK = 1;
 	}
 	
-	public Character(int bombPower, int healthPoints, Point position, int stockBombs) {
+	public Character() {
+		this(DEFAULT_POWER,
+			 DEFAULT_AREA,
+			 DEFAULT_HEALTH,
+			 new Point(1,1),
+			 DEFAULT_STOCK);
+	}
+	
+	public Character(int bombPower, int bombArea, int healthPoints, Point position, int stockBombs) {
 		this.bombPower = bombPower;
+		this.bombArea = bombArea;
 		this.healthPoints = healthPoints;
 		this.position = position;
 	}
@@ -97,6 +116,10 @@ public class Character implements BomberEntity, Movable, MoveBlocker {
 	public void setSpeedVector(SpeedVector m) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public int getFireArea() {
+		return 0;
 	}
 
 }
