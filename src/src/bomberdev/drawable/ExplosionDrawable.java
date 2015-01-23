@@ -6,9 +6,9 @@ import java.awt.Point;
 
 import src.bomberdev.model.BomberEntity;
 
-public class BrickDrawable extends BomberDrawable {
+public class ExplosionDrawable extends BomberDrawable {
 
-	public BrickDrawable(String filename, BomberEntity entity, GameCanvas canvas) {
+	public ExplosionDrawable(String filename, BomberEntity entity, GameCanvas canvas) {
 		super(filename, entity, canvas);
 	}
 
@@ -18,7 +18,5 @@ public class BrickDrawable extends BomberDrawable {
 		
 	}
 
-	public void animDestroy() {
-		// TODO Implement
-	}
+
 }

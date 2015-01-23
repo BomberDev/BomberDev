@@ -2,11 +2,13 @@ package src.bomberdev.model;
 
 import java.awt.Point;
 
+import src.bomberdev.game.BomberUniverse;
+
 
 public class DestructibleBrick extends Brick {
 
-	public DestructibleBrick(Point position) {
-		super(position);
+	public DestructibleBrick(BomberUniverse univ, Point position) {
+		super(univ, position);
 	}
 
 	
@@ -16,5 +18,4 @@ public class DestructibleBrick extends Brick {
 		this.drawable.animDestroy();
 		// TODO: Delete from list of entities
 	}
-
 }

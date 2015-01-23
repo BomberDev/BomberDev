@@ -1,5 +1,6 @@
 package levels;
 
+import src.bomberdev.game.BomberViewPort;
 import gameframework.drawing.GameUniverseViewPortDefaultImpl;
 import gameframework.game.GameData;
 import gameframework.game.GameLevel;
@@ -13,8 +14,8 @@ public class GameLevel1 extends GameLevelDefaultImpl implements GameLevel {
 
 
 		protected void init(){
-			this.universe=data.getUniverse();
-			this.gameBoard= new GameUniverseViewPortDefaultImpl();//TODO
+			this.universe = data.getUniverse();
+			this.gameBoard = new BomberViewPort();//TODO
 			this.gameBoard.setGameData(data);
 		}
 

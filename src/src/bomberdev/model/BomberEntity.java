@@ -4,6 +4,9 @@ import gameframework.game.GameEntity;
 
 import java.awt.Point;
 
+import src.bomberdev.drawable.BomberDrawable;
+import src.bomberdev.game.BomberUniverse;
+
 public interface BomberEntity extends GameEntity {
 
 	/**
@@ -17,4 +20,8 @@ public interface BomberEntity extends GameEntity {
 	 * @return A point describing the position of the entity in number of tiles.
 	 */
 	Point getPosition();
+	
+	void setDrawable(BomberDrawable drawable);
+	
+	BomberUniverse getUniverse();
 }

@@ -1,35 +1,78 @@
 package src.bomberdev.model;
 
-import java.awt.Point;
-import java.awt.Rectangle;
-
-import src.bomberdev.drawable.CharacterDrawable;
-import gameframework.game.GameEntity;
+import gameframework.game.GameUniverse;
+import gameframework.motion.GameMovable;
+import gameframework.motion.GameMovableDriver;
+import gameframework.motion.GameMovableDriverDefaultImpl;
 import gameframework.motion.Movable;
+import gameframework.motion.MoveStrategy;
 import gameframework.motion.SpeedVector;
 import gameframework.motion.blocking.MoveBlocker;
 
-public class Character implements BomberEntity, Movable, MoveBlocker {
+import java.awt.Point;
+import java.awt.Rectangle;
 
-	/** The fire power of the bomb in number of tiles. */
+import other.PlayerKeyboard;
+import src.bomberdev.drawable.BombDrawable;
+import src.bomberdev.drawable.BomberDrawable;
+import src.bomberdev.drawable.CharacterDrawable;
+import src.bomberdev.game.BomberUniverse;
+
+public class Character extends GameMovable implements BomberEntity, MoveBlocker {
+
+	private final BomberUniverse univ;
+	/** The fire power of the bomb in number of health points taken when it damages. */
 	private int bombPower;
+	/** The area fire power of the bomb in number of tiles. */
+	private int bombArea;
 	/** The character's number of health points. */
 	private int healthPoints;
-	/** The character's position in number of tiles .*/
-	private Point position;
 	/** The number of bombs the character can plant at a time. */
 	private int bombStock;
+	/** The direction the character is facing. */
+	private Point direction;
 	/** The drawable associated with this entity. */
 	private CharacterDrawable drawable;
 	
-	public Character() {
-		this(2, 1, new Point(1,1), 1);
+	private final MoveStrategy strategy;
+	
+	private static final int DEFAULT_POWER;
+	private static final int DEFAULT_AREA;
+	private static final int DEFAULT_HEALTH;
+	private static final int DEFAULT_STOCK;
+	
+	static {
+		 DEFAULT_POWER = 1;
+		 DEFAULT_AREA = 2;
+		 DEFAULT_HEALTH = 1;
+		 DEFAULT_STOCK = 1;
 	}
 	
-	public Character(int bombPower, int healthPoints, Point position, int stockBombs) {
+	public Character(GameUniverse gameUniverse) {
+		this(gameUniverse,
+			 DEFAULT_POWER,
+			 DEFAULT_AREA,
+			 DEFAULT_HEALTH,
+			 DEFAULT_STOCK);
+	}
+	
+	public Character(GameUniverse gameUniverse, int bombPower,
+			int bombArea, int healthPoints, int stockBombs) {
+		super();
+		
+		this.univ = (BomberUniverse) gameUniverse;
 		this.bombPower = bombPower;
+		this.bombArea = bombArea;
 		this.healthPoints = healthPoints;
-		this.position = position;
+		this.direction = new Point(0, 1);
+		this.strategy = new PlayerKeyboard();
+		
+		init();
+	}
+
+	protected void init() {
+		this.univ.addGameEntity(this);
+		((GameMovableDriverDefaultImpl) this.moveDriver).setStrategy(this.strategy);
 	}
 	
 	/**
@@ -39,7 +82,6 @@ public class Character implements BomberEntity, Movable, MoveBlocker {
 	 */
 	
 	public boolean plantBomb() {
-		this.drawable.animPlanting();
 		if(this.bombStock > 0) {
 			// TODO: create a bomb
 			this.bombStock--;
@@ -50,16 +92,34 @@ public class Character implements BomberEntity, Movable, MoveBlocker {
 	}
 	
 	
-	public int getFirePower() {
-		return this.bombPower;
-	}
-
 	private void die() {
 		this.drawable.animDying();
 	}
 
 	public void incrementBombStock() {
 		this.bombStock++;
+	}
+	
+	/* Getters and setters */
+	
+	public int getBombArea() {
+		return this.bombArea;
+	}
+
+	public void setBombArea(int bombArea) {
+		this.bombArea = bombArea;
+	}
+
+	public int getBombPower() {
+		return bombPower;
+	}
+
+	public void setBombPower(int bombPower) {
+		this.bombPower = bombPower;
+	}
+
+	public Point getDirection() {
+		return this.direction;
 	}
 	
 	@Override
@@ -83,20 +143,24 @@ public class Character implements BomberEntity, Movable, MoveBlocker {
 	}
 
 	@Override
-	public Point getPosition() {
-		return this.position;
-	}
-
-	@Override
-	public SpeedVector getSpeedVector() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setSpeedVector(SpeedVector m) {
-		// TODO Auto-generated method stub
+	public void oneStepMoveAddedBehavior() {
+		Point dir = this.strategy.getSpeedVector().getDirection();
 		
+		if(!this.direction.equals(dir)) {
+			this.direction = dir;
+			this.drawable.setDirection(dir);
+		}
+		
+		this.drawable.animMoving();
 	}
-
+	
+	@Override
+	public void setDrawable(BomberDrawable drawable) {
+		this.drawable = (CharacterDrawable) drawable;
+	}
+	
+	@Override
+	public BomberUniverse getUniverse() {
+		return this.univ;
+	}
 }

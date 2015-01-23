@@ -10,11 +10,15 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import src.bomberdev.drawable.BombDrawable;
+import src.bomberdev.drawable.BomberDrawable;
+import src.bomberdev.game.BomberUniverse;
 
 public class Bomb implements BomberEntity, MoveBlocker{
 
+	private final BomberUniverse univ;
 	private final Character owner;
 	private final int power;
+	private final int area;
 	private Point position;
 	private Timer timer;
 	private BombDrawable drawable;
@@ -24,9 +28,11 @@ public class Bomb implements BomberEntity, MoveBlocker{
 		DELAY = 3;
 	}
 	
-	public Bomb(Character owner, Point position) {
+	public Bomb(BomberUniverse univ, Character owner, Point position) {
+		this.univ = univ;
 		this.owner = owner;
-		this.power = owner.getFirePower();
+		this.power = owner.getBombPower();
+		this.area = owner.getBombArea();
 		this.position = position;
 		this.timer = configureTimer();
 	}
@@ -39,9 +45,10 @@ public class Bomb implements BomberEntity, MoveBlocker{
 	}
 	
 	public void explode() {
-		// TODO: check for all GameEntity caught in the explosion.
 		this.drawable.animExplode();
 		this.owner.incrementBombStock();
+		this.univ.explosionOccuring(this);
+		this.univ.removeGameEntity(this);
 	}
 	
 	@Override
@@ -51,8 +58,7 @@ public class Bomb implements BomberEntity, MoveBlocker{
 	
 	@Override
 	public Rectangle getBoundingBox() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Rectangle(100, 100);
 	}
 
 	@Override
@@ -67,10 +73,24 @@ public class Bomb implements BomberEntity, MoveBlocker{
 		public void actionPerformed(ActionEvent e) {
 			explode();
 		}
-
-		
-		
 	}
 
+	public int getFirePower() {
+		return this.power;
+	}
+
+	public int getAreaPower() {
+		return this.area;
+	}
+
+	@Override
+	public void setDrawable(BomberDrawable drawable) {
+		this.drawable = (BombDrawable) drawable;
+	}
+
+	@Override
+	public BomberUniverse getUniverse() {
+		return this.univ;
+	}
 	
 }
