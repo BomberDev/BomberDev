@@ -21,6 +21,12 @@ public interface BomberEntity extends GameEntity {
 	 */
 	Point getPosition();
 	
+	/**
+	 * Generates a drawable corresponding to the type of entity.
+	 * @return A drawable of the entity.
+	 */
+	BomberDrawable draw();
+	
 	void setDrawable(BomberDrawable drawable);
 	
 	BomberUniverse getUniverse();

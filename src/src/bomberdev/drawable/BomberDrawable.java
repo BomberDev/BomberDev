@@ -6,7 +6,7 @@ import gameframework.drawing.SpriteManagerDefaultImpl;
 import gameframework.game.GameEntity;
 
 import java.awt.Graphics;
-import java.awt.Point;
+import java.net.URL;
 
 import src.bomberdev.model.BomberEntity;
 
@@ -35,6 +35,13 @@ public abstract class BomberDrawable extends DrawableImage implements GameEntity
 	 */
 	public abstract void animIdle();
 
+	/** 
+	 * Allows you to declare a default filename, which can be use for generic instantiations of
+	 * BomberDrawable.
+	 * @return The filename of the default sprite for this class.
+	 */
+	public abstract String getSpriteFileName();
+	
 	@Override
 	public void draw(Graphics g) {
 		this.manager.draw(g, this.entity.getPosition());
