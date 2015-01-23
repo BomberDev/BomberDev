@@ -2,18 +2,14 @@ package src.bomberdev.model;
 
 import gameframework.game.GameUniverse;
 import gameframework.motion.GameMovable;
-import gameframework.motion.GameMovableDriver;
 import gameframework.motion.GameMovableDriverDefaultImpl;
-import gameframework.motion.Movable;
 import gameframework.motion.MoveStrategy;
-import gameframework.motion.SpeedVector;
 import gameframework.motion.blocking.MoveBlocker;
 
 import java.awt.Point;
 import java.awt.Rectangle;
 
 import other.PlayerKeyboard;
-import src.bomberdev.drawable.BombDrawable;
 import src.bomberdev.drawable.BomberDrawable;
 import src.bomberdev.drawable.CharacterDrawable;
 import src.bomberdev.game.BomberUniverse;

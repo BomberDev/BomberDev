@@ -5,22 +5,25 @@ import gameframework.motion.blocking.MoveBlocker;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import src.bomberdev.drawable.BombDrawable;
 import src.bomberdev.drawable.BomberDrawable;
 import src.bomberdev.drawable.BrickDrawable;
 import src.bomberdev.game.BomberUniverse;
 
-public abstract class Brick implements BomberEntity, MoveBlocker {
+public abstract class Block implements BomberEntity, MoveBlocker {
 
 	protected BomberUniverse univ;
 	protected final Point position;
 	protected BrickDrawable drawable;
 	
-	public Brick(BomberUniverse univ, Point position) {
+	public Block(BomberUniverse univ, Point position) {
 		this.univ = univ;
 		this.position = position;
 	}
 	
+	public Block(Point position) {
+		this.position = position;
+	}
+
 	@Override
 	public Point getPosition() {
 		return this.position;
@@ -40,7 +43,7 @@ public abstract class Brick implements BomberEntity, MoveBlocker {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Brick other = (Brick) obj;
+		Block other = (Block) obj;
 		if (drawable == null) {
 			if (other.drawable != null)
 				return false;

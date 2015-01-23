@@ -7,11 +7,11 @@ import java.util.Scanner;
 
 public class BomberMap {
 
-	private Brick[][] bricks;
+	private Block[][] bricks;
 
 	public BomberMap(String fName, int rows, int columns) {
 		String filename = "Resources/Maps/" + fName;
-		this.bricks = new Brick[rows][columns];
+		this.bricks = new Block[rows][columns];
 		int[][] bricks = getBricksArray(filename, rows, columns);
 
 		for (int j = 0; j < rows; j++) {
@@ -19,9 +19,9 @@ public class BomberMap {
 				if (bricks[j][i] == 0) {
 					
 				} else if (bricks[j][i] == 1) {
-					this.bricks[j][i] = new SolidBrick(new Point(i, j));
+					this.bricks[j][i] = new SolidBlock(new Point(i, j));
 				} else if (bricks[j][i] == 2) {
-					this.bricks[j][i] = new DestructibleBrick(new Point(i, j));
+					this.bricks[j][i] = new ExplodableBlock(new Point(i, j));
 				} else {
 					throw new RuntimeException(
 							"Bricks must be represented by 0 for a DestrutibleBrick or 1 for a SolidBrick");
@@ -55,7 +55,7 @@ public class BomberMap {
 		return bricks;
 	}
 
-	public Brick getBrickAt(int i, int j) {
+	public Block getBrickAt(int i, int j) {
 		return this.bricks[i][j];
 	}
 	

@@ -5,14 +5,20 @@ import java.awt.Point;
 import src.bomberdev.game.BomberUniverse;
 
 
-public class DestructibleBrick extends Brick {
+public class ExplodableBlock extends Block {
 
-	public DestructibleBrick(BomberUniverse univ, Point position) {
+	public ExplodableBlock(BomberUniverse univ, Point position) {
 		super(univ, position);
 	}
 
 	
 	
+	public ExplodableBlock(Point position) {
+		super(position);
+	}
+
+
+
 	@Override
 	public void onTakingDamage(int damage) {
 		this.drawable.animDestroy();
