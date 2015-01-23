@@ -2,9 +2,9 @@ package src.bomberdev.model;
 
 import java.awt.Point;
 
-public class IndestructibleBrick extends Brick {
+public class SolidBrick extends Brick {
 
-	public IndestructibleBrick(Point position) {
+	public SolidBrick(Point position) {
 		super(position);
 	}
 
