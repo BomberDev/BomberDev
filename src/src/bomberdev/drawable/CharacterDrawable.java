@@ -1,6 +1,7 @@
 package src.bomberdev.drawable;
 
 import gameframework.drawing.GameCanvas;
+import gameframework.drawing.SpriteManagerDefaultImpl;
 
 import java.awt.Point;
 
@@ -11,11 +12,12 @@ public class CharacterDrawable extends BomberDrawable {
 	public CharacterDrawable(String filename, BomberEntity entity,
 			GameCanvas canvas) {
 		super(filename, entity, canvas);
-		this.manager.setTypes("right", "left", "down", "up");
+		this.manager = new SpriteManagerDefaultImpl(this, 128, 8);
 		init();
 	}
 
 	protected void init() {
+		this.manager.setTypes("right", "left", "down", "up");
 		this.entity.getUniverse().addGameEntity(this);
 	}
 

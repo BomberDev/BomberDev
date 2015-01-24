@@ -12,7 +12,7 @@ import gameframework.motion.MoveStrategyKeyboard;
 import levels.GameLevel1;
 import src.bomberdev.drawable.CharacterDrawable;
 import src.bomberdev.game.BomberConfig;
-import src.bomberdev.model.BomberLevel;
+import src.bomberdev.game.BomberLevel;
 import src.bomberdev.model.BomberMap;
 import src.bomberdev.model.Character;
 

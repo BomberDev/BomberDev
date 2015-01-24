@@ -19,7 +19,6 @@ public abstract class BomberDrawable extends DrawableImage implements
 			GameCanvas canvas) {
 		super(filename, canvas);
 		this.entity = entity;
-		this.manager = new SpriteManagerDefaultImpl(this, 128, 8);
 	}
 
 	/**
