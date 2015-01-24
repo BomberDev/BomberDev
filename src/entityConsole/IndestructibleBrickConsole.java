@@ -1,14 +1,15 @@
 package entityConsole;
 
 import java.awt.Point;
-import drawable.BrickDrawable;
 
-import models.Brick;
+import entityConsole.drawable.BrickDrawable;
+import entityConsole.models.Brick;
 
-public class BrickExplodable extends Console<Brick,BrickDrawable>{
+
+public class IndestructibleBrickConsole extends Console<Brick,BrickDrawable>{
 
 	
-	public BrickExplodable(String imagefile, int maxSpriteNumber) {
+	public IndestructibleBrickConsole(String imagefile, int maxSpriteNumber) {
 		super(imagefile, maxSpriteNumber);
 	}
 
@@ -16,9 +17,7 @@ public class BrickExplodable extends Console<Brick,BrickDrawable>{
 	protected Brick creationEntity(int row, int column) {
 		return new Brick(new Point(renderingSize*row,renderingSize*column)){
 			@Override
-			public void onTakingDamage(int damage) {
-				if(damage>0)BrickExplodable.this.deleteEntity(this);
-			}	
+			public void onTakingDamage(int damage) {			}	
 		};
 	}
 

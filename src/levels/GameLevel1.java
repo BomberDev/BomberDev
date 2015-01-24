@@ -1,6 +1,6 @@
 package levels;
 
-import entityConsole.BrickExplodable;
+import entityConsole.DestructibleBrickConsole;
 import update.GameUniverseViewPortImpl;
 import gameframework.game.GameData;
 import gameframework.game.GameLevel;
@@ -12,12 +12,12 @@ public class GameLevel1 extends GameLevelDefaultImpl implements GameLevel {
 			super(data);
 		}
 
-
+		@Override
 		protected void init(){
 			this.universe=data.getUniverse();
 			this.gameBoard= new GameUniverseViewPortImpl();
 			gameBoard.setGameData(data);
-			BrickExplodable explodableBlock = new BrickExplodable("/Blocks/ExplodableBlock.png", 1);
+			DestructibleBrickConsole explodableBlock = new DestructibleBrickConsole("/Blocks/ExplodableBlock.png", 1);
 			explodableBlock.setGameData(data);
 			for(int i = 0;i<20;i++)	explodableBlock.createEntity(i,0);
 			for(int i = 0;i<20;i++)	explodableBlock.createEntity(i,14);

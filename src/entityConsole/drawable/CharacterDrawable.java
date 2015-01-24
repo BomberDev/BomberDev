@@ -1,9 +1,9 @@
-package drawable;
+package entityConsole.drawable;
 
+import entityConsole.models.BomberEntity;
 import gameframework.drawing.GameCanvas;
 import java.awt.Point;
 
-import models.BomberEntity;
 
 public class CharacterDrawable extends BomberDrawable {
 
@@ -36,6 +36,5 @@ public class CharacterDrawable extends BomberDrawable {
 
 	public void animDying() {
 		// TODO: implement
-		this.visible=false;
 	}
 }

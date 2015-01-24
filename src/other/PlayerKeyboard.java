@@ -3,24 +3,24 @@ package other;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
-import player.PlayerModel;
+import entityConsole.models.BomberCharacter;
 
 import gameframework.game.GameEntity;
 import gameframework.motion.MoveStrategyKeyboard;
 
 public class PlayerKeyboard extends MoveStrategyKeyboard {
 	
-	GameEntity entity;
+	BomberCharacter entity;
 
 	
 	public PlayerKeyboard() {
 	}
 	
-	public PlayerKeyboard(GameEntity entity) {
+	public PlayerKeyboard(BomberCharacter entity) {
 		this.entity = entity;
 	}
 
-	public void setEntity(GameEntity entity){
+	public void setEntity(BomberCharacter entity){
 		this.entity=entity;
 	}
 	
@@ -30,11 +30,9 @@ public class PlayerKeyboard extends MoveStrategyKeyboard {
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
-		if(entity==null||!(entity instanceof PlayerModel))return;
+		if(entity==null)return;
 		if (e.getKeyChar() == 'x')
-			((PlayerModel) entity).action(1);
-		else if (e.getKeyChar() == 'c')
-			((PlayerModel) entity).action(2);
+			this.entity.plantBomb();
 	}
 	
     @Override

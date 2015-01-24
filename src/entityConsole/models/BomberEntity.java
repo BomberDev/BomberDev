@@ -1,4 +1,4 @@
-package models;
+package entityConsole.models;
 
 import gameframework.game.GameEntity;
 import java.awt.Point;

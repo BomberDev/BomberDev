@@ -1,5 +1,6 @@
 package main;
 
+import entityConsole.models.BomberCharacter;
 import gameframework.base.ObservableValue;
 import gameframework.drawing.GameCanvas;
 import gameframework.game.Game;
@@ -9,13 +10,10 @@ import gameframework.game.GameDefaultImpl;
 import gameframework.game.GameLevel;
 import gameframework.gui.GameStatusBarElement;
 import gameframework.gui.GameWindow;
-import gameframework.motion.GameMovableDriver;
-import gameframework.motion.GameMovableDriverDefaultImpl;
 import gameframework.motion.MoveStrategyRandom;
 import levels.GameLevel1;
 import other.PlayerKeyboard;
 import player.PlayerModel;
-import models.IndestructibleBrick;
 
 public class Main {
 
@@ -41,11 +39,12 @@ public class Main {
 		MoveStrategyRandom strategyRandom = new MoveStrategyRandom();
 
 		// PLAYERS
-		PlayerModel player = null;
+		BomberCharacter player = null;
 		PlayerModel random = null;
 		try{
-		player = new PlayerModel("/Characters/bomberman.png", gameData, 8, strategyKeyboard);
-		player.setPoint(1,1);
+		player = new BomberCharacter(gameData, strategyKeyboard);
+		player.initDrawable("/Characters/bomberman.png", gameData, 8);
+		player.setPosition(1,1);
 		
 
 		random = new PlayerModel("/r1.png", gameData, 10, strategyRandom);
@@ -63,8 +62,7 @@ public class Main {
 
 		gameData.getUniverse().addGameEntity(player);
 		gameData.getUniverse().addGameEntity(random);
-		gameData.getUniverse().addGameEntity(new IndestructibleBrick());
-
+		
 		Game game = new GameDefaultImpl(gameData);
 		/*
 		 * GameUniverseViewPort universeViewPort = new

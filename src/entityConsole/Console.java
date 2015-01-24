@@ -8,7 +8,7 @@ import gameframework.game.GameUniverse;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public abstract class Console<T extends GameEntity,D extends Drawable> {
+public abstract class Console<T extends GameEntity,D extends Drawable> implements GameEntity {
 
 	protected LinkedList<T> entitys;
 	protected HashMap<T, D> drawables;
@@ -29,18 +29,25 @@ public abstract class Console<T extends GameEntity,D extends Drawable> {
 	
 	public void setGameData(GameData data){
 		if(this.gameUniverse!=null){
-			for(T entity:entitys){
-				this.gameUniverse.removeGameEntity(entity);
-				this.gameUniverse.removeGameEntity((GameEntity)this.drawables.get(entity));
-			}
+			setdown();
 		}
 		this.gameUniverse=data.getUniverse();
 		this.canvas=data.getCanvas();
 		this.renderingSize=data.getConfiguration().getSpriteSize();
+		this.gameUniverse.addGameEntity(this);
 		for(GameEntity entity:entitys){
 			this.gameUniverse.addGameEntity(entity);
 			this.gameUniverse.addGameEntity((GameEntity)this.drawables.get(entity));
 		}
+	}
+	
+	public void setdown(){
+		for(T entity:entitys){
+			this.gameUniverse.removeGameEntity(entity);
+			this.gameUniverse.removeGameEntity((GameEntity)this.drawables.get(entity));
+		}
+		this.gameUniverse.removeGameEntity(this);
+		this.gameUniverse=null;
 	}
 	
 	protected abstract T creationEntity(int row, int column);

@@ -1,9 +1,9 @@
-package models;
+package entityConsole.models;
 
 import gameframework.drawing.Drawable;
 import gameframework.drawing.GameCanvas;
-import gameframework.game.GameData;
 import gameframework.game.GameEntity;
+import gameframework.game.GameUniverse;
 import gameframework.motion.blocking.MoveBlocker;
 
 import java.awt.Graphics;
@@ -12,21 +12,22 @@ import java.awt.Rectangle;
 import java.util.Iterator;
 import java.util.Timer;
 
-import drawable.BombDrawable;
+import entityConsole.drawable.BombDrawable;
 
 public class Bomb implements BomberEntity, MoveBlocker, Drawable {
 
-	private final Character owner;
+	private final BomberCharacter owner;
 	private final int power;
 	protected Point position;
 	protected Timer timer;
 	protected BombDrawable drawable;
-	protected GameData data;
+	protected GameUniverse gameUniverse;
 
-	public Bomb(Character owner, Point position, GameData data) {
+	public Bomb(BomberCharacter owner, Point position, GameUniverse gameUniverse) {
 		this.owner = owner;
 		this.power = owner.getFirePower();
 		this.position = position;
+		this.gameUniverse=gameUniverse;
 	}
 	
 	public void createDrawable(String filename, GameCanvas canvas, int renderingSize,
@@ -36,7 +37,7 @@ public class Bomb implements BomberEntity, MoveBlocker, Drawable {
 
 	public void explode() {
 		// check for all GameEntity caught in the explosion.
-		Iterator<GameEntity> entitys = this.data.getUniverse().getGameEntitiesIterator();
+		Iterator<GameEntity> entitys = this.gameUniverse.getGameEntitiesIterator();
 		for(GameEntity entity;entitys.hasNext();){
 			entity=entitys.next();
 			if(entity instanceof BomberEntity){//one who will be damaged
@@ -52,7 +53,7 @@ public class Bomb implements BomberEntity, MoveBlocker, Drawable {
 			}
 		}
 		//----
-		this.drawable.animExplode();
+		this.owner.getConsole().deleteEntity(this);
 		this.owner.incrementBombStock();
 	}
 
@@ -63,7 +64,7 @@ public class Bomb implements BomberEntity, MoveBlocker, Drawable {
 
 	@Override
 	public Rectangle getBoundingBox() {
-		return new Rectangle(drawable.getRenderingSize(),drawable.getRenderingSize());
+		return this.drawable.getBoundingBox();
 	}
 
 	@Override

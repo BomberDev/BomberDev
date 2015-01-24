@@ -1,7 +1,8 @@
-package models;
+package entityConsole.models;
 
 import java.awt.Point;
-import drawable.BrickDrawable;
+
+import entityConsole.drawable.BrickDrawable;
 
 public abstract class Brick implements BomberEntity {
 
