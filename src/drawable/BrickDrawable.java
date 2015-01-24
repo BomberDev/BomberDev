@@ -1,24 +1,26 @@
 package drawable;
 
 import gameframework.drawing.GameCanvas;
-import java.awt.Point;
+import gameframework.motion.blocking.MoveBlocker;
 
+import java.awt.Point;
 import models.BomberEntity;
 
-public class BrickDrawable extends BomberDrawable {
+public class BrickDrawable extends BomberDrawable implements MoveBlocker  {
 
 	public BrickDrawable(String filename, GameCanvas canvas, int renderingSize,
 			int maxSpriteNumber, BomberEntity entity) {
-		super(filename, canvas, maxSpriteNumber, maxSpriteNumber, entity);
+		super(filename, canvas, renderingSize, maxSpriteNumber, entity);
 	}
 
 	@Override
 	public void animIdle(Point direction) {
-		// TODO Auto-generated method stub
-
+		this.spriteManager.setType("left");
 	}
 
 	public void animDestroy() {
-		// TODO Implement
+		//TODO
+		this.visible=false;
 	}
+
 }

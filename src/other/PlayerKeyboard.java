@@ -3,7 +3,7 @@ package other;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
-import player.Player;
+import player.PlayerModel;
 
 import gameframework.game.GameEntity;
 import gameframework.motion.MoveStrategyKeyboard;
@@ -30,11 +30,11 @@ public class PlayerKeyboard extends MoveStrategyKeyboard {
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
-		if(entity==null||!(entity instanceof Player))return;
+		if(entity==null||!(entity instanceof PlayerModel))return;
 		if (e.getKeyChar() == 'x')
-			((Player) entity).action(1);
+			((PlayerModel) entity).action(1);
 		else if (e.getKeyChar() == 'c')
-			((Player) entity).action(2);
+			((PlayerModel) entity).action(2);
 	}
 	
     @Override

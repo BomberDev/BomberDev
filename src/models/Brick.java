@@ -1,13 +1,9 @@
 package models;
 
-import gameframework.motion.blocking.MoveBlocker;
-
 import java.awt.Point;
-import java.awt.Rectangle;
-
 import drawable.BrickDrawable;
 
-public abstract class Brick implements BomberEntity, MoveBlocker {
+public abstract class Brick implements BomberEntity {
 
 	protected final Point position;
 	protected BrickDrawable drawable;
@@ -15,16 +11,17 @@ public abstract class Brick implements BomberEntity, MoveBlocker {
 	public Brick(Point position) {
 		this.position = position;
 	}
-
+	
+	/**
+	 * Method called when the entity takes damage.
+	 * @param damage The number of damage taken.
+	 */
+	public abstract void onTakingDamage(int damage);
+	
 	@Override
 	public Point getPosition() {
 		return this.position;
 	}
 
-	@Override
-	public Rectangle getBoundingBox() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

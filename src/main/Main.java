@@ -7,12 +7,14 @@ import gameframework.game.GameConfiguration;
 import gameframework.game.GameData;
 import gameframework.game.GameDefaultImpl;
 import gameframework.game.GameLevel;
+import gameframework.gui.GameStatusBarElement;
 import gameframework.gui.GameWindow;
-import gameframework.motion.MoveStrategyKeyboard;
+import gameframework.motion.GameMovableDriver;
+import gameframework.motion.GameMovableDriverDefaultImpl;
 import gameframework.motion.MoveStrategyRandom;
 import levels.GameLevel1;
 import other.PlayerKeyboard;
-import player.Player;
+import player.PlayerModel;
 import models.IndestructibleBrick;
 
 public class Main {
@@ -24,7 +26,7 @@ public class Main {
 
 		// INITIALIZATION
 
-		GameConfiguration config = new GameConfiguration(30, 60, 16, 5);
+		GameConfiguration config = new GameConfiguration(15, 20, 40, 5);
 		GameData gameData = new GameData(config);
 		ObservableValue<Integer> score = gameData.getScore();
 		ObservableValue<Integer> life = gameData.getLife();
@@ -39,15 +41,15 @@ public class Main {
 		MoveStrategyRandom strategyRandom = new MoveStrategyRandom();
 
 		// PLAYERS
-		Player player = null;
-		Player random = null;
+		PlayerModel player = null;
+		PlayerModel random = null;
 		try{
-		player = new Player("/resource/bomberman.png", gameData.getCanvas(),
-				110, 8, strategyKeyboard);
+		player = new PlayerModel("/Characters/bomberman.png", gameData, 8, strategyKeyboard);
+		player.setPoint(1,1);
 		
 
-		random = new Player("/resource/r1.png", gameData.getCanvas(),
-				110, 10, strategyRandom);
+		random = new PlayerModel("/r1.png", gameData, 10, strategyRandom);
+		random.setPoint(7,10);
 		}catch(IllegalArgumentException e){
 			System.out.println("Error:"+e.getLocalizedMessage()+"\n at Main.java an image can't be found");
 			System.exit(0);
@@ -73,8 +75,7 @@ public class Main {
 
 		canvas.addKeyListener(strategyKeyboard);
 		
-		GameWindow gameWindow = new GameWindow("BonberDev", canvas, config,
-				score, life);
+		GameWindow gameWindow = new GameWindow("BomberDev", canvas, config,new GameStatusBarElement<Integer>("score",score),new GameStatusBarElement<Integer>("life",life));
 
 		gameWindow.createGUI();
 

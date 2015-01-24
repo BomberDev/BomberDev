@@ -3,8 +3,8 @@ package player;
 import gameframework.base.ObjectWithBoundedBox;
 import gameframework.drawing.Drawable;
 import gameframework.drawing.DrawableImage;
-import gameframework.drawing.GameCanvas;
 import gameframework.drawing.SpriteManagerDefaultImpl;
+import gameframework.game.GameData;
 import gameframework.game.GameEntity;
 import gameframework.motion.GameMovable;
 import gameframework.motion.GameMovableDriverDefaultImpl;
@@ -15,28 +15,31 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-public class Player extends GameMovable implements GameEntity, Drawable,
+public class PlayerModel extends GameMovable implements GameEntity, Drawable,
 		Movable, ObjectWithBoundedBox {
 
 	protected SpriteManagerDefaultImpl spriteManager;
 	protected boolean increment = false;
 	protected boolean inAction;
+	protected int renderingSize; 
 
-	public Player(String filename, GameCanvas canvas, int renderingSize,
+	public PlayerModel(String filename, GameData data,
 			int maxSpriteNumber, MoveStrategy strategy) {
+		this.renderingSize=data.getConfiguration().getSpriteSize()*2;
 		spriteManager = new SpriteManagerDefaultImpl(new DrawableImage(
-				filename, canvas), renderingSize, maxSpriteNumber);
+				filename, data.getCanvas()),renderingSize , maxSpriteNumber);
 		this.spriteManager.setTypes("right", "left", "down", "up");
 		strategy.getSpeedVector().setDirection(position);
 		strategy.getSpeedVector().setSpeed(5);
-
+		
 		GameMovableDriverDefaultImpl driver = new GameMovableDriverDefaultImpl();
 		driver.setStrategy(strategy);
+		driver.setmoveBlockerChecker(data.getMoveBlockerChecker());
 		setDriver(driver);
 	}
 
 	public void setPoint(int x, int y) {
-		this.position.setLocation(x, y);
+		this.setPosition(new Point(x*this.renderingSize, y*this.renderingSize));
 	}
 
 	public void increment() {

@@ -1,15 +1,16 @@
 package models;
 
+import gameframework.drawing.Drawable;
 import gameframework.motion.Movable;
 import gameframework.motion.SpeedVector;
-import gameframework.motion.blocking.MoveBlocker;
 
+import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
 import drawable.CharacterDrawable;
 
-public class Character implements BomberEntity, Movable, MoveBlocker {
+public class Character implements BomberEntity, Movable,Drawable {
 
 	/** The fire power of the bomb in number of tiles. */
 	private int bombPower;
@@ -21,16 +22,18 @@ public class Character implements BomberEntity, Movable, MoveBlocker {
 	private int bombStock;
 	/** The drawable associated with this entity. */
 	private CharacterDrawable drawable;
+	private SpeedVector speedVector;
 
 	public Character() {
-		this(2, 1, new Point(1, 1), 1);
+		this(2, 1, new Point(1, 1), 1, new SpeedVector(new Point(0,0)));
 	}
 
 	public Character(int bombPower, int healthPoints, Point position,
-			int stockBombs) {
+			int stockBombs,SpeedVector speedVector) {
 		this.bombPower = bombPower;
 		this.healthPoints = healthPoints;
 		this.position = position;
+		this.speedVector = speedVector;
 	}
 
 	/**
@@ -40,7 +43,6 @@ public class Character implements BomberEntity, Movable, MoveBlocker {
 	 * @return <code>true</code> if the bomb was successfully planted;<br>
 	 *         <code>false</code> else;
 	 */
-
 	public boolean plantBomb() {
 		this.drawable.animPlanting();
 		if (this.bombStock > 0) {
@@ -98,14 +100,18 @@ public class Character implements BomberEntity, Movable, MoveBlocker {
 
 	@Override
 	public SpeedVector getSpeedVector() {
-		return null;//(SpeedVector)this.SpeedVector;
+		return (SpeedVector)this.speedVector.clone();
 	}
 
 	@Override
 	public void setSpeedVector(SpeedVector m) {
-		// TODO Auto-generated method stub
-		//this.speedVector.setDirection(m.getDirection);
-		//this.speedVector.setSpeed(m.getSpeed);
+		this.speedVector.setDirection(m.getDirection());
+		this.speedVector.setSpeed(m.getSpeed());
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		this.drawable.draw(g);
 	}
 
 }

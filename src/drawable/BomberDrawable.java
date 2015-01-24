@@ -4,13 +4,16 @@ import gameframework.drawing.Drawable;
 import gameframework.drawing.DrawableImage;
 import gameframework.drawing.GameCanvas;
 import gameframework.drawing.SpriteManagerDefaultImpl;
+import gameframework.game.GameEntity;
+import gameframework.motion.overlapping.Overlappable;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 import models.BomberEntity;
 
-public abstract class BomberDrawable implements Drawable {
+public abstract class BomberDrawable implements Drawable,GameEntity, Overlappable {
 
 	protected final BomberEntity entity;
 	protected SpriteManagerDefaultImpl spriteManager;
@@ -56,5 +59,15 @@ public abstract class BomberDrawable implements Drawable {
 	
 	public int getRenderingSize(){
 		return this.renderingSize;
+	}
+	
+	@Override
+	public Rectangle getBoundingBox() {
+		return new Rectangle(this.renderingSize,this.renderingSize);
+	}
+
+	@Override
+	public Point getPosition() {
+		return this.entity.getPosition();
 	}
 }
