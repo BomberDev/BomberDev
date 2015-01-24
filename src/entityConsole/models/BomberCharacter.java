@@ -7,6 +7,8 @@ import gameframework.motion.GameMovable;
 import gameframework.motion.GameMovableDriverDefaultImpl;
 import gameframework.motion.MoveStrategy;
 import gameframework.motion.SpeedVector;
+import gameframework.motion.overlapping.OverlapProcessor;
+import gameframework.motion.overlapping.Overlappable;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -16,7 +18,7 @@ import java.awt.Rectangle;
 import entityConsole.BombConsole;
 import entityConsole.drawable.CharacterDrawable;
 
-public class BomberCharacter extends GameMovable implements BomberEntity,Drawable {
+public class BomberCharacter extends GameMovable implements BomberEntity,Drawable,Overlappable {
 
 	/** The fire power of the bomb in number of tiles. */
 	private int bombPower;
@@ -26,30 +28,39 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 	private int bombStock;
 	/** The drawable associated with this entity. */
 	private CharacterDrawable drawable;
+	int speed;
 	private MoveStrategy strategy;
 	private BombConsole console;
 
 	public BomberCharacter(GameData data,MoveStrategy strategy) {
-		this(2, 1, 1, data, strategy);
+		this(2, 1, 1, 1,data, strategy);
 	}
 
 	public BomberCharacter(int bombPower, int healthPoints,
-			int stockBombs, GameData data,MoveStrategy strategy) {
+			int stockBombs, int speed,GameData data,MoveStrategy strategy) {
 		this.bombPower = bombPower;
 		this.healthPoints = healthPoints;
 		this.bombStock=stockBombs;
 		this.console=new BombConsole("/Bomb/Bomb.png", 3, this);
 		this.console.setGameData(data);
 		this.strategy=strategy;
-		
-		
-		
+		this.speed=speed;
+		data.getOverlapProcessor().addOverlappable(this);
 		GameMovableDriverDefaultImpl driver = new GameMovableDriverDefaultImpl();
 		driver.setStrategy(strategy);
 		driver.setmoveBlockerChecker(data.getMoveBlockerChecker());
 		setDriver(driver);
+		this.speedVector.setSpeed(5+speed);
 	}
 
+	public void incrimentSpeed(){
+		this.speedVector.setSpeed(5+speed++);
+	}
+	
+	public int getSpeed(){
+		return this.speed;
+	}
+	
 	public void setDrawable(CharacterDrawable drawable){
 		this.drawable=drawable;
 	}

@@ -3,6 +3,7 @@ package entityConsole;
 import java.awt.Point;
 import entityConsole.models.*;
 import entityConsole.drawable.BombDrawable;
+import entityConsole.drawable.SelfDestructionDrawable;
 import entityConsole.models.Bomb;
 
 public class BombConsole extends Console<Bomb, BombDrawable> {
@@ -18,7 +19,6 @@ public class BombConsole extends Console<Bomb, BombDrawable> {
 		int s = data.getConfiguration().getSpriteSize();
 		int x = Math.round(new Float(row)/new Float(s));
 		int y = Math.round(new Float(column)/new Float(s));
-		System.out.println(row+" "+column+" "+s+":"+x+" "+y);
 		return new Bomb(owner, new Point(x*s,y*s),this.data);
 	}
 
@@ -33,6 +33,11 @@ public class BombConsole extends Console<Bomb, BombDrawable> {
 			System.exit(0);
 		}
 		return res;
+	}
+
+	@Override
+	protected void deathPlay(Bomb entity) {
+		SelfDestructionDrawable.create("/Flame/Flame.png", data, 5, 5, entity);
 	}
 
 

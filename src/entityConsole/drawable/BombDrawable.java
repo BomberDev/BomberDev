@@ -6,7 +6,6 @@ import gameframework.drawing.GameCanvas;
 import gameframework.motion.Movable;
 import gameframework.motion.SpeedVector;
 import gameframework.motion.blocking.MoveBlocker;
-
 import java.awt.Point;
 
 

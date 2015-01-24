@@ -3,6 +3,8 @@ package entityConsole;
 import java.awt.Point;
 
 import entityConsole.drawable.BrickDrawable;
+import entityConsole.drawable.SelfDestructionDrawable;
+import entityConsole.models.Bomb;
 import entityConsole.models.Brick;
 
 
@@ -26,6 +28,11 @@ public class DestructibleBrickConsole extends Console<Brick,BrickDrawable>{
 	@Override
 	protected BrickDrawable creationDrawable(Brick entity) {
 		return new BrickDrawable(imagefile, data.getCanvas(), renderingSize, maxSpriteNumber, entity);
+	}
+	
+	@Override
+	protected void deathPlay(Brick entity) {
+		SelfDestructionDrawable.create("/Flame/Flame.png", data, 5, 5, entity);
 	}
 
 }
