@@ -7,6 +7,7 @@ import gameframework.drawing.SpriteManagerDefaultImpl;
 import gameframework.game.GameEntity;
 import gameframework.motion.overlapping.Overlappable;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -63,7 +64,9 @@ public abstract class BomberDrawable implements Drawable,GameEntity, Overlappabl
 	
 	@Override
 	public Rectangle getBoundingBox() {
-		return new Rectangle(this.renderingSize,this.renderingSize);
+		Dimension dimension = new Dimension();
+		dimension.setSize(this.renderingSize, this.renderingSize);
+		return new Rectangle(this.getPosition(),dimension);
 	}
 
 	@Override
