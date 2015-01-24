@@ -14,14 +14,25 @@ public class BombConsole extends Console<Bomb, BombDrawable> {
 
 	@Override
 	protected Bomb creationEntity(int row, int column) {
-		int x = Math.getExponent(new Float(row)/new Float(this.renderingSize));
-		int y = Math.getExponent(new Float(column)/new Float(this.renderingSize));
-		return new Bomb(owner, new Point(x*this.renderingSize,y*this.renderingSize), this.gameUniverse);
+		
+		int s = data.getConfiguration().getSpriteSize();
+		int x = Math.round(new Float(row)/new Float(s));
+		int y = Math.round(new Float(column)/new Float(s));
+		System.out.println(row+" "+column+" "+s+":"+x+" "+y);
+		return new Bomb(owner, new Point(x*s,y*s),this.data);
 	}
 
 	@Override
 	protected BombDrawable creationDrawable(Bomb entity) {
-		return new BombDrawable(imagefile, canvas, renderingSize, maxSpriteNumber, entity);
+		BombDrawable res = null;
+		try{
+			entity.createDrawable(imagefile, data.getCanvas(), renderingSize, maxSpriteNumber);
+			res = entity.getDrawable();
+		}catch(NullPointerException e){
+			System.out.println("ERROR: "+"NullPointerException : "+e.getLocalizedMessage()+"\n -gameData havn't set into Console?\nat entityConsole.BomberConsole\nat entityConsole.models.BomberCharacter");
+			System.exit(0);
+		}
+		return res;
 	}
 
 

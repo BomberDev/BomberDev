@@ -16,7 +16,7 @@ public abstract class Console<T extends GameEntity,D extends Drawable> implement
 	//for creation drawable maxSpriteNumber, maxSpriteNumber int renderingSize
 	
 	protected String imagefile;
-	protected GameCanvas canvas;
+	protected GameData data;
 	protected int renderingSize;
 	protected int maxSpriteNumber;
 	
@@ -32,7 +32,7 @@ public abstract class Console<T extends GameEntity,D extends Drawable> implement
 			setdown();
 		}
 		this.gameUniverse=data.getUniverse();
-		this.canvas=data.getCanvas();
+		this.data=data;
 		this.renderingSize=data.getConfiguration().getSpriteSize();
 		this.gameUniverse.addGameEntity(this);
 		for(GameEntity entity:entitys){

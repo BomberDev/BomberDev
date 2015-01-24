@@ -37,8 +37,9 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 			int stockBombs, GameData data,MoveStrategy strategy) {
 		this.bombPower = bombPower;
 		this.healthPoints = healthPoints;
+		this.bombStock=stockBombs;
 		this.console=new BombConsole("/Bomb/Bomb.png", 3, this);
-		
+		this.console.setGameData(data);
 		this.strategy=strategy;
 		
 		
@@ -70,13 +71,11 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 	 *         <code>false</code> else;
 	 */
 	public boolean plantBomb() {
-		this.drawable.animPlanting();
 		if (this.bombStock > 0) {
 			this.console.createEntity(this.position.x, this.position.y);
 			this.bombStock--;
 			return true;
 		}
-
 		return false;
 	}
 

@@ -23,7 +23,7 @@ public class IndestructibleBrickConsole extends Console<Brick,BrickDrawable>{
 
 	@Override
 	protected BrickDrawable creationDrawable(Brick entity) {
-		return new BrickDrawable(imagefile, canvas, renderingSize, maxSpriteNumber, entity);
+		return new BrickDrawable(imagefile, data.getCanvas(), renderingSize, maxSpriteNumber, entity);
 	}
 
 }

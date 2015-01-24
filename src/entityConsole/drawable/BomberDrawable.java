@@ -15,7 +15,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 
-public abstract class BomberDrawable implements Drawable,GameEntity, Overlappable {
+public abstract class BomberDrawable implements Drawable,GameEntity {
 
 	protected final BomberEntity entity;
 	protected SpriteManagerDefaultImpl spriteManager;
@@ -61,19 +61,23 @@ public abstract class BomberDrawable implements Drawable,GameEntity, Overlappabl
 		return this.renderingSize;
 	}
 	
-	@Override
+	
 	public Rectangle getBoundingBox() {
 		Dimension dimension = new Dimension();
 		dimension.setSize(this.renderingSize, this.renderingSize);
 		return new Rectangle(this.getPosition(),dimension);
 	}
 
-	@Override
+	
 	public Point getPosition() {
 		return this.entity.getPosition();
 	}
 	
 	public SpriteManager getSpriteManager(){
 		return this.spriteManager;
+	}
+	
+	public void increment(){
+		this.spriteManager.increment();
 	}
 }
