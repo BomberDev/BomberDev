@@ -41,8 +41,7 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 		
 		this.strategy=strategy;
 		
-		strategy.getSpeedVector().setDirection(position);
-		strategy.getSpeedVector().setSpeed(10);
+		
 		
 		GameMovableDriverDefaultImpl driver = new GameMovableDriverDefaultImpl();
 		driver.setStrategy(strategy);
@@ -109,9 +108,7 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 
 	@Override
 	public Rectangle getBoundingBox() {
-		Dimension dimension = new Dimension();
-		dimension.setSize(this.drawable.getRenderingSize(), this.drawable.getRenderingSize());
-		return new Rectangle(this.getPosition(),dimension);
+		return this.drawable.getBoundingBox();
 	}
 
 	@Override
@@ -128,7 +125,7 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 	@Override
 	public void oneStepMoveAddedBehavior() {
 		//Walking plant
-				SpeedVector sv = this.getSpeedVector();
+				SpeedVector sv = this.strategy.getSpeedVector();
 				Point dit = sv.getDirection();
 				int speed = sv.getSpeed();
 				this.drawable.animIdle(sv.getDirection());

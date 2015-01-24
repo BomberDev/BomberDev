@@ -51,6 +51,21 @@ public class PlayerKeyboard extends MoveStrategyKeyboard {
 		}
     	
     }
-    
-    
+    @Override
+	public void keyPressed(int keyCode) {
+		switch (keyCode) {
+		case KeyEvent.VK_RIGHT:
+			goRight();
+			break;
+		case KeyEvent.VK_LEFT:
+			goLeft();
+			break;
+		case KeyEvent.VK_UP:
+			goUp();
+			break;
+		case KeyEvent.VK_DOWN:
+			goDown();
+			break;
+		}
+	}
 }

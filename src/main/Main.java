@@ -10,6 +10,8 @@ import gameframework.game.GameDefaultImpl;
 import gameframework.game.GameLevel;
 import gameframework.gui.GameStatusBarElement;
 import gameframework.gui.GameWindow;
+import gameframework.motion.MoveStrategyKeyboard;
+import gameframework.motion.MoveStrategyKeyboard8Dir;
 import gameframework.motion.MoveStrategyRandom;
 import levels.GameLevel1;
 import other.PlayerKeyboard;
@@ -42,7 +44,7 @@ public class Main {
 		BomberCharacter player = null;
 		PlayerModel random = null;
 		try{
-		player = new BomberCharacter(gameData, strategyRandom);
+		player = new BomberCharacter(gameData, strategyKeyboard);
 		player.initDrawable("/Characters/bomberman.png", gameData, 8);
 		player.setPosition(1,1);
 		
@@ -54,8 +56,8 @@ public class Main {
 			System.exit(0);
 		}
 		
+		//strategyKeyboard.setEntity(player);
 		strategyKeyboard.setEntity(player);
-
 		random.setPoint(50, 50);
 
 		// ADD ENTITIES

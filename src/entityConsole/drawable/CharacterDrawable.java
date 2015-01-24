@@ -2,7 +2,11 @@ package entityConsole.drawable;
 
 import entityConsole.models.BomberEntity;
 import gameframework.drawing.GameCanvas;
+
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 
 public class CharacterDrawable extends BomberDrawable {
@@ -19,9 +23,23 @@ public class CharacterDrawable extends BomberDrawable {
 		if(x<0)this.spriteManager.setType("left");
 		else if(x>0)this.spriteManager.setType("right");
 		else if(y<0)this.spriteManager.setType("up");
-		else this.spriteManager.setType("down");//(0,1) or (0,0)
+		else if(y>0)this.spriteManager.setType("down");
 	}
-
+	
+	@Override
+	public void draw(Graphics g) {
+		Point imagePosition = (Point) this.entity.getPosition().clone();
+		imagePosition.x-=this.getRenderingSize()/4;
+		imagePosition.y-=this.getRenderingSize()/2;
+		this.spriteManager.draw(g, imagePosition);
+	}
+	@Override
+	public Rectangle getBoundingBox() {
+		Dimension dimension = new Dimension();
+		dimension.setSize(this.getRenderingSize()/2, this.getRenderingSize()/2);
+		return new Rectangle(this.getPosition(),dimension);
+	}
+	
 	public void reset(){
 		this.spriteManager.reset();
 	}
