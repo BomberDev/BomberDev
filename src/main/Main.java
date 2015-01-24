@@ -16,6 +16,7 @@ import gameframework.motion.MoveStrategyRandom;
 import levels.GameLevel1;
 import other.PlayerKeyboard;
 import player.PlayerModel;
+import update.Config;
 
 public class Main {
 
@@ -26,7 +27,7 @@ public class Main {
 
 		// INITIALIZATION
 
-		GameConfiguration config = new GameConfiguration(15, 20, 40, 5);
+		GameConfiguration config = new Config(15, 20, 40, 5);
 		GameData gameData = new GameData(config);
 		ObservableValue<Integer> score = gameData.getScore();
 		ObservableValue<Integer> life = gameData.getLife();

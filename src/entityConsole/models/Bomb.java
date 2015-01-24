@@ -53,7 +53,7 @@ public class Bomb implements BomberEntity {
 				int dy = p.y;
 				int fx = this.position.x;
 				int fy = this.position.y;
-				if(((dx<=fx+size*0.5)&&(dx>=fx-size*0.5)&&(dy<=fy+size*(power))&&(dy>=fy-size*(power)))||((dy<=fy+size*0.5)&&(dy>=fy-size*0.5)&&(dx<=fx+size*(power))&&(dx>=fx-size*(power)))){
+				if(((dx<=fx+size*0.5)&&(dx>=fx-size*0.5)&&(dy<fy+size*(power))&&(dy>fy-size*(power)))||((dy<=fy+size*0.5)&&(dy>=fy-size*0.5)&&(dx<fx+size*(power))&&(dx>fx-size*(power)))){
 					//TODO: Destroy this entity and play the animation
 					((BomberEntity) entity).onTakingDamage(this.power);
 				}
