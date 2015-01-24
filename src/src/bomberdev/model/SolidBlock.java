@@ -1,5 +1,7 @@
 package src.bomberdev.model;
 
+import gameframework.drawing.GameCanvas;
+
 import java.awt.Point;
 
 import src.bomberdev.drawable.BomberDrawable;
@@ -22,8 +24,8 @@ public class SolidBlock extends Block {
 	}
 
 	@Override
-	public BomberDrawable draw() {
-		return new SolidBlockDrawable(entity, canvas);
+	public BomberDrawable draw(GameCanvas canvas) {
+		return new SolidBlockDrawable(this, canvas);
 	}
 
 }

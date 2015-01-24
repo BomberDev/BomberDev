@@ -12,6 +12,8 @@ import gameframework.motion.MoveStrategyKeyboard;
 import levels.GameLevel1;
 import src.bomberdev.drawable.CharacterDrawable;
 import src.bomberdev.game.BomberConfig;
+import src.bomberdev.model.BomberLevel;
+import src.bomberdev.model.BomberMap;
 import src.bomberdev.model.Character;
 
 public class Main {
@@ -19,37 +21,40 @@ public class Main {
 	private static GameConfiguration initialiseConfig() {
 		return new BomberConfig();
 	}
-	
-	/*private static GameData initialiseData(GameConfiguration config) {
-		
-	} */
-	
+
+	/*
+	 * private static GameData initialiseData(GameConfiguration config) {
+	 * 
+	 * }
+	 */
+
 	public static void main(String[] args) {
 		GameConfiguration config = initialiseConfig();
-		
+
 		GameData gameData = new GameData(config);
 		ObservableValue<Integer> score = gameData.getScore();
 		ObservableValue<Integer> life = gameData.getLife();
-		
+
 		// STRATEGY
 		MoveStrategyKeyboard strategyKeyboard = new MoveStrategyKeyboard(false);
 
 		// PLAYER
 		Character character = new Character(gameData.getUniverse());
-		
-		GameLevel level = new GameLevel1(gameData);
+
+		BomberMap map = new BomberMap("testMap.txt", 6, 6);
+		GameLevel level = new BomberLevel(gameData, map);
 		gameData.addLevel(level);
-		
+
 		Game game = new GameDefaultImpl(gameData);
-		
+
 		GameCanvas canvas = gameData.getCanvas();
 		canvas.addKeyListener(strategyKeyboard);
-		
-		// DRAWABLES
-		character.setDrawable(new CharacterDrawable("/resources/Characters/bomberman.png", character, canvas));
 
-		GameWindow gameWindow = new GameWindow(canvas, config,
-				score, life);
+		// DRAWABLES
+		character.setDrawable(new CharacterDrawable(
+				"/Resources/Graphics/Characters/bomberman.png", character, canvas));
+
+		GameWindow gameWindow = new GameWindow(canvas, config, score, life);
 
 		gameWindow.createGUI();
 

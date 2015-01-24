@@ -5,7 +5,7 @@ import src.bomberdev.model.BomberEntity;
 
 public class BombDrawable extends BomberDrawable {
 	
-	protected static String filename = "Bomb.png";
+	protected static String filename = "/Resources/Graphics/Blocks/Bomb.png";
 	
 	public BombDrawable(BomberEntity entity, GameCanvas canvas) {
 		super(filename, entity, canvas);

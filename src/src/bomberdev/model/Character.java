@@ -1,5 +1,6 @@
 package src.bomberdev.model;
 
+import gameframework.drawing.GameCanvas;
 import gameframework.game.GameUniverse;
 import gameframework.motion.GameMovable;
 import gameframework.motion.GameMovableDriverDefaultImpl;
@@ -161,7 +162,7 @@ public class Character extends GameMovable implements BomberEntity, MoveBlocker 
 	}
 
 	@Override
-	public BomberDrawable draw() {
+	public BomberDrawable draw(GameCanvas canvas) {
 		// TODO Auto-generated method stub
 		return null;
 	}

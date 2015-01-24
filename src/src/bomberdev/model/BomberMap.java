@@ -10,7 +10,7 @@ public class BomberMap {
 	private Block[][] bricks;
 
 	public BomberMap(String fName, int rows, int columns) {
-		String filename = "Resources/Maps/" + fName;
+		String filename = "target/classes/Resources/Maps/" + fName;
 		this.bricks = new Block[rows][columns];
 		int[][] bricks = getBricksArray(filename, rows, columns);
 

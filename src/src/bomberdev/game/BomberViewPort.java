@@ -8,6 +8,6 @@ public class BomberViewPort extends GameUniverseViewPortDefaultImpl {
 
 	@Override
 	protected URL backgroundImage() {
-		return backgroundImage("/resources/background.png");
+		return backgroundImage("/Resources/Graphics/background.png");
 	}
 }

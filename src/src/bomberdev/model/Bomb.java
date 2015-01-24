@@ -1,5 +1,6 @@
 package src.bomberdev.model;
 
+import gameframework.drawing.GameCanvas;
 import gameframework.motion.blocking.MoveBlocker;
 
 import java.awt.Point;
@@ -94,8 +95,8 @@ public class Bomb implements BomberEntity, MoveBlocker{
 	}
 
 	@Override
-	public BomberDrawable draw() {
-		return new BombDrawable(entity, canvas);
+	public BomberDrawable draw(GameCanvas canvas) {
+		return new BombDrawable(this, canvas);
 	}
 	
 }
