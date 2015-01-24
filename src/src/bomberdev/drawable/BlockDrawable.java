@@ -6,9 +6,9 @@ import java.awt.Point;
 
 import src.bomberdev.model.BomberEntity;
 
-public class BrickDrawable extends BomberDrawable {
+public class BlockDrawable extends BomberDrawable {
 
-	public BrickDrawable(String filename, BomberEntity entity, GameCanvas canvas) {
+	public BlockDrawable(String filename, BomberEntity entity, GameCanvas canvas) {
 		super(filename, entity, canvas);
 	}
 

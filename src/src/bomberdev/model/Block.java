@@ -6,14 +6,14 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import src.bomberdev.drawable.BomberDrawable;
-import src.bomberdev.drawable.BrickDrawable;
+import src.bomberdev.drawable.BlockDrawable;
 import src.bomberdev.game.BomberUniverse;
 
 public abstract class Block implements BomberEntity, MoveBlocker {
 
 	protected BomberUniverse univ;
 	protected final Point position;
-	protected BrickDrawable drawable;
+	protected BlockDrawable drawable;
 	
 	public Block(BomberUniverse univ, Point position) {
 		this.univ = univ;
@@ -58,7 +58,7 @@ public abstract class Block implements BomberEntity, MoveBlocker {
 	}
 
 	public void setDrawable(BomberDrawable drawable) {
-		this.drawable = (BrickDrawable) drawable;
+		this.drawable = (BlockDrawable) drawable;
 	}
 	
 	@Override
