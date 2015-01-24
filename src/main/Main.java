@@ -42,7 +42,7 @@ public class Main {
 		BomberCharacter player = null;
 		PlayerModel random = null;
 		try{
-		player = new BomberCharacter(gameData, strategyKeyboard);
+		player = new BomberCharacter(gameData, strategyRandom);
 		player.initDrawable("/Characters/bomberman.png", gameData, 8);
 		player.setPosition(1,1);
 		

@@ -39,7 +39,7 @@ public class PlayerModel extends GameMovable implements GameEntity, Drawable,
 	}
 
 	public void setPoint(int x, int y) {
-		this.setPosition(new Point(x*this.renderingSize, y*this.renderingSize));
+		this.setPosition(new Point(x, y));
 	}
 
 	public void increment() {

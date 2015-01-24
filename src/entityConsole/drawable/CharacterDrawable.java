@@ -9,7 +9,7 @@ public class CharacterDrawable extends BomberDrawable {
 
 	public CharacterDrawable(String filename, GameCanvas canvas, int renderingSize,
 			int maxSpriteNumber, BomberEntity entity) {
-		super(filename, canvas, maxSpriteNumber, maxSpriteNumber, entity);
+		super(filename, canvas,renderingSize , maxSpriteNumber, entity);
 	}
 
 	@Override
