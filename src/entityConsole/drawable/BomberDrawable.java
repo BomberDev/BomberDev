@@ -7,8 +7,6 @@ import gameframework.drawing.GameCanvas;
 import gameframework.drawing.SpriteManager;
 import gameframework.drawing.SpriteManagerDefaultImpl;
 import gameframework.game.GameEntity;
-import gameframework.motion.overlapping.Overlappable;
-
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;

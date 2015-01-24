@@ -2,6 +2,7 @@ package entityConsole.drawable;
 
 import entityConsole.models.BomberEntity;
 import gameframework.drawing.GameCanvas;
+import gameframework.game.GameData;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -49,10 +50,10 @@ public class CharacterDrawable extends BomberDrawable {
 	}
 
 	public void animPlanting() {
-		// TODO: implement
+		//It's better that we have a such picture...
 	}
 
-	public void animDying() {
-		// TODO: implement
+	public void animDying(GameData data) {
+		SelfDestructionDrawable.create("/Flame/Flame.png", data, 5, 5, entity);
 	}
 }

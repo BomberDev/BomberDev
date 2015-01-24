@@ -4,7 +4,6 @@ import java.awt.Point;
 
 import entityConsole.drawable.BrickDrawable;
 import entityConsole.drawable.SelfDestructionDrawable;
-import entityConsole.models.Bomb;
 import entityConsole.models.Brick;
 
 

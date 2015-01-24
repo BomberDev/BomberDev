@@ -1,16 +1,13 @@
 package entityConsole.models;
 
 import gameframework.drawing.Drawable;
-import gameframework.drawing.SpriteManager;
 import gameframework.game.GameData;
 import gameframework.motion.GameMovable;
 import gameframework.motion.GameMovableDriverDefaultImpl;
 import gameframework.motion.MoveStrategy;
 import gameframework.motion.SpeedVector;
-import gameframework.motion.overlapping.OverlapProcessor;
 import gameframework.motion.overlapping.Overlappable;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -29,13 +26,20 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 	/** The drawable associated with this entity. */
 	private CharacterDrawable drawable;
 	int speed;
+	/**
+	 * it's only use for get the vector tendency. the real SpeedVector is from drive.
+	 */
 	private MoveStrategy strategy;
+	/**
+	 * Which to create and delete a bomb.
+	 */
 	private BombConsole console;
+	protected GameData data;
 
 	public BomberCharacter(GameData data,MoveStrategy strategy) {
 		this(2, 1, 1, 1,data, strategy);
 	}
-
+	//maybe we should link the health to life, for player.
 	public BomberCharacter(int bombPower, int healthPoints,
 			int stockBombs, int speed,GameData data,MoveStrategy strategy) {
 		this.bombPower = bombPower;
@@ -45,6 +49,7 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 		this.console.setGameData(data);
 		this.strategy=strategy;
 		this.speed=speed;
+		this.data=data;
 		data.getOverlapProcessor().addOverlappable(this);
 		GameMovableDriverDefaultImpl driver = new GameMovableDriverDefaultImpl();
 		driver.setStrategy(strategy);
@@ -54,6 +59,7 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 	}
 
 	public void incrimentSpeed(){
+		//TODO unverified
 		this.speedVector.setSpeed(5+speed++);
 	}
 	
@@ -95,8 +101,8 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 	}
 
 	private void die() {
-		this.drawable.animDying();
-		//TODO implement
+		this.drawable.animDying(data);
+		this.data.getUniverse().removeGameEntity(this);
 	}
 
 	public void setPosition(int x,int y){

@@ -1,7 +1,6 @@
 package entityConsole;
 
-import gameframework.drawing.Drawable;
-import gameframework.drawing.GameCanvas;
+import entityConsole.drawable.BomberDrawable;
 import gameframework.game.GameData;
 import gameframework.game.GameEntity;
 import gameframework.game.GameUniverse;
@@ -10,7 +9,17 @@ import gameframework.motion.overlapping.Overlappable;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public abstract class Console<T extends GameEntity,D extends Drawable> implements GameEntity {
+/**A console is a console for a same type of an entity drawable.
+ * The entitys created by this method is safe because this will do everything
+ * even if you want to change your gamedata.
+ * 
+ * @author Xingxue
+ *
+ * @param <T> GameEntity
+ * @param <D> {@link gameframework.drawing.Drawable}, may be {@link gameframework.motion.blocking.MoveBlocker}
+ * 	but always display for the above GameEntity  
+ */
+public abstract class Console<T extends GameEntity,D extends BomberDrawable> implements GameEntity {
 
 	protected LinkedList<T> entitys;
 	protected HashMap<T, D> drawables;
@@ -43,6 +52,9 @@ public abstract class Console<T extends GameEntity,D extends Drawable> implement
 		}
 	}
 	
+	/**
+	 * remove all entity for the gamedata. with this method the console will be free
+	 */
 	public void setdown(){
 		for(T entity:entitys){
 			this.gameUniverse.removeGameEntity(entity);
@@ -52,8 +64,16 @@ public abstract class Console<T extends GameEntity,D extends Drawable> implement
 		this.gameUniverse=null;
 	}
 	
+
 	protected abstract T creationEntity(int row, int column);
+	
 	protected abstract D creationDrawable(T entity);
+	
+	/**SelfDestructionDrawable.create("/Flame/Flame.png", data, 5, 5, entity);
+	 * is a good example for this method.
+	 * Be careful, the Death drawable entity should be deleted it-self.
+	 * @param entity
+	 */
 	protected abstract void deathPlay(T entity);
 	
 	public void createEntity(int row,int column){
@@ -74,6 +94,7 @@ public abstract class Console<T extends GameEntity,D extends Drawable> implement
 	}
 	
 	public void deleteEntity(T entity){
+		if(!this.drawables.containsKey(entity))return;
 		D drawable = this.drawables.get(entity);
 		this.gameUniverse.removeGameEntity((GameEntity)drawable);
 		this.gameUniverse.removeGameEntity(entity);

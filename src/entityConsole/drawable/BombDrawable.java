@@ -20,7 +20,7 @@ public class BombDrawable extends BomberDrawable implements MoveBlocker,Movable{
 
 	@Override
 	public void animIdle(Point direction) {
-		// TODO Auto-generated method stub
+		// Note: useless their
 	}
 
 	public void animExplode() {
@@ -29,14 +29,13 @@ public class BombDrawable extends BomberDrawable implements MoveBlocker,Movable{
 
 	@Override
 	public SpeedVector getSpeedVector() {
-		// TODO 自动生成的方法存根
-		return null;
+		//isn't really movable but must implement it
+		return SpeedVector.createNullVector();
 	}
 
 	@Override
 	public void setSpeedVector(SpeedVector m) {
-		// TODO 自动生成的方法存根
-		
+		// note: nothing to do
 	}
 
 	@Override

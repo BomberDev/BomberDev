@@ -15,6 +15,7 @@ public class GameLevel1 extends GameLevelDefaultImpl implements GameLevel {
 
 		@Override
 		protected void init(){
+			//TODO
 			this.universe=data.getUniverse();
 			this.gameBoard= new GameUniverseViewPortImpl();
 			gameBoard.setGameData(data);

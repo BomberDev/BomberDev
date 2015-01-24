@@ -10,8 +10,6 @@ import gameframework.game.GameDefaultImpl;
 import gameframework.game.GameLevel;
 import gameframework.gui.GameStatusBarElement;
 import gameframework.gui.GameWindow;
-import gameframework.motion.MoveStrategyKeyboard;
-import gameframework.motion.MoveStrategyKeyboard8Dir;
 import gameframework.motion.MoveStrategyRandom;
 import levels.GameLevel1;
 import other.PlayerKeyboard;

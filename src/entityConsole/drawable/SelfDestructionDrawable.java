@@ -23,7 +23,7 @@ public class SelfDestructionDrawable extends BomberDrawable implements Movable {
 	
 	@Override
 	public void animIdle(Point direction) {
-		
+		//note:nothing to do
 	}
 
 	@Override
@@ -33,6 +33,7 @@ public class SelfDestructionDrawable extends BomberDrawable implements Movable {
 
 	@Override
 	public void setSpeedVector(SpeedVector m) {
+		//note:nothing to do
 	}
 
 	@Override

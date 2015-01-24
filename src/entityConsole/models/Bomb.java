@@ -1,15 +1,9 @@
 package entityConsole.models;
 
-import gameframework.drawing.Drawable;
 import gameframework.drawing.GameCanvas;
 import gameframework.game.GameData;
 import gameframework.game.GameEntity;
-import gameframework.game.GameUniverse;
-import gameframework.motion.blocking.MoveBlocker;
-
-import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.util.Iterator;
 import java.util.Timer;
 
@@ -41,6 +35,8 @@ public class Bomb implements BomberEntity {
 	}
 	
 	public void explode() {
+		//TODO this method isn't right. it must be stop when meet a brick.
+		
 		// check for all GameEntity caught in the explosion.
 		Iterator<GameEntity> entitys = this.data.getUniverse().getGameEntitiesIterator();
 		for(GameEntity entity;entitys.hasNext();){
@@ -54,7 +50,6 @@ public class Bomb implements BomberEntity {
 				int fx = this.position.x;
 				int fy = this.position.y;
 				if(((dx<=fx+size*0.5)&&(dx>=fx-size*0.5)&&(dy<fy+size*(power))&&(dy>fy-size*(power)))||((dy<=fy+size*0.5)&&(dy>=fy-size*0.5)&&(dx<fx+size*(power))&&(dx>fx-size*(power)))){
-					//TODO: Destroy this entity and play the animation
 					((BomberEntity) entity).onTakingDamage(this.power);
 				}
 			}

@@ -1,6 +1,7 @@
 package entityConsole.drawable;
 
 import entityConsole.models.BomberEntity;
+import entityConsole.models.Brick;
 import gameframework.drawing.GameCanvas;
 import gameframework.motion.blocking.MoveBlocker;
 import gameframework.motion.overlapping.Overlappable;
@@ -20,7 +21,7 @@ public class BrickDrawable extends BomberDrawable implements MoveBlocker,Overlap
 	}
 
 	public void animDestroy() {
-		//TODO
+		((Brick)entity).onTakingDamage(1);
 	}
 
 }
