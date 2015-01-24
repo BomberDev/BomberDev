@@ -1,6 +1,5 @@
 package src.bomberdev;
 
-import levels.GameLevel1;
 import gameframework.base.ObservableValue;
 import gameframework.drawing.GameCanvas;
 import gameframework.game.Game;
@@ -10,13 +9,10 @@ import gameframework.game.GameDefaultImpl;
 import gameframework.game.GameLevel;
 import gameframework.gui.GameWindow;
 import gameframework.motion.MoveStrategyKeyboard;
-import gameframework.motion.MoveStrategyRandom;
-import other.ActionKeyboard;
-import player.Player;
+import levels.GameLevel1;
 import src.bomberdev.drawable.CharacterDrawable;
 import src.bomberdev.game.BomberConfig;
 import src.bomberdev.model.Character;
-import decor.IndestructibleBrick;
 
 public class Main {
 

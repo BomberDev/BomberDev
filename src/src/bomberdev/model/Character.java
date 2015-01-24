@@ -159,4 +159,10 @@ public class Character extends GameMovable implements BomberEntity, MoveBlocker 
 	public BomberUniverse getUniverse() {
 		return this.univ;
 	}
+
+	@Override
+	public BomberDrawable draw() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -1,9 +1,6 @@
 package src.bomberdev.drawable;
 
 import gameframework.drawing.GameCanvas;
-
-import java.awt.Point;
-
 import src.bomberdev.model.BomberEntity;
 
 public class ExplosionDrawable extends BomberDrawable {

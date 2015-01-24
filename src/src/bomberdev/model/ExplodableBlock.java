@@ -2,6 +2,8 @@ package src.bomberdev.model;
 
 import java.awt.Point;
 
+import src.bomberdev.drawable.BomberDrawable;
+import src.bomberdev.drawable.ExplodableBlockDrawable;
 import src.bomberdev.game.BomberUniverse;
 
 
@@ -23,5 +25,12 @@ public class ExplodableBlock extends Block {
 	public void onTakingDamage(int damage) {
 		this.drawable.animDestroy();
 		// TODO: Delete from list of entities
+	}
+
+
+
+	@Override
+	public BomberDrawable draw() {
+		return new ExplodableBlockDrawable(entity, canvas);
 	}
 }

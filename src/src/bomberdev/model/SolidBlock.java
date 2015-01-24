@@ -2,6 +2,8 @@ package src.bomberdev.model;
 
 import java.awt.Point;
 
+import src.bomberdev.drawable.BomberDrawable;
+import src.bomberdev.drawable.SolidBlockDrawable;
 import src.bomberdev.game.BomberUniverse;
 
 public class SolidBlock extends Block {
@@ -17,6 +19,11 @@ public class SolidBlock extends Block {
 	@Override
 	public void onTakingDamage(int damage) {
 		// Nothing to do, those bricks are indestructible!!
+	}
+
+	@Override
+	public BomberDrawable draw() {
+		return new SolidBlockDrawable(entity, canvas);
 	}
 
 }

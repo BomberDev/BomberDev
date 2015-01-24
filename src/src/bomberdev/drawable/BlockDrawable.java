@@ -1,9 +1,6 @@
 package src.bomberdev.drawable;
 
 import gameframework.drawing.GameCanvas;
-
-import java.awt.Point;
-
 import src.bomberdev.model.BomberEntity;
 
 public class BlockDrawable extends BomberDrawable {
@@ -15,7 +12,7 @@ public class BlockDrawable extends BomberDrawable {
 	@Override
 	public void animIdle() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void animDestroy() {

@@ -92,5 +92,10 @@ public class Bomb implements BomberEntity, MoveBlocker{
 	public BomberUniverse getUniverse() {
 		return this.univ;
 	}
+
+	@Override
+	public BomberDrawable draw() {
+		return new BombDrawable(entity, canvas);
+	}
 	
 }
