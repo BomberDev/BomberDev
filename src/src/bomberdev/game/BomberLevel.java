@@ -14,15 +14,16 @@ public class BomberLevel extends GameLevelDefaultImpl {
 
 	public BomberLevel(GameData data, BomberMap map) {
 		super(data);
-		this.universe = data.getUniverse();
-		this.gameBoard = new BomberViewPort();
-		this.gameBoard.setGameData(data);
 		this.map = map;
 	}
 
 	@Override
 	protected void init() {
-
+		
+		this.universe = data.getUniverse();
+		this.gameBoard = new BomberViewPort();
+		this.gameBoard.setGameData(data);
+		
 		for (int j = 0; j < map.getNbRows(); j++) {
 			for (int i = 0; i < map.getNbColumns(); i++) {
 				Block block = map.getBrickAt(j, i);

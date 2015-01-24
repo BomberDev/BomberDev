@@ -15,18 +15,13 @@ public abstract class Block implements BomberEntity, MoveBlocker {
 	protected final Point position;
 	protected BlockDrawable drawable;
 	
-	public Block(BomberUniverse univ, Point position) {
-		this.univ = univ;
-		this.position = position;
-	}
-	
 	public Block(Point position) {
 		this.position = position;
 	}
 
 	@Override
 	public Point getPosition() {
-		return this.position;
+		return new Point(position.x*64,position.y*64);
 	}
 	
 	@Override

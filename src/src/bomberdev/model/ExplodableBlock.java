@@ -6,13 +6,8 @@ import java.awt.Point;
 
 import src.bomberdev.drawable.BomberDrawable;
 import src.bomberdev.drawable.ExplodableBlockDrawable;
-import src.bomberdev.game.BomberUniverse;
 
 public class ExplodableBlock extends Block {
-
-	public ExplodableBlock(BomberUniverse univ, Point position) {
-		super(univ, position);
-	}
 
 	public ExplodableBlock(Point position) {
 		super(position);
