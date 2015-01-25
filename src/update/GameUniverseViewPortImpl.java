@@ -17,6 +17,6 @@ public class GameUniverseViewPortImpl extends GameUniverseViewPortDefaultImpl{
 	}
 	@Override
 	protected URL backgroundImage() {
-		return backgroundImage("/images/background_image.jpg");
+		return backgroundImage("/Blocks/BackgroundTile1915.png");
 	}
 }

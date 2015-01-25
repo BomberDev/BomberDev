@@ -38,7 +38,7 @@ public class BombConsole extends Console<Bomb, BombDrawable> {
 
 	@Override
 	protected void deathPlay(Bomb entity) {
-		SelfDestructionDrawable.create("/Flame/Flame.png", data, 5, 5, entity);
+		SelfDestructionDrawable.create("/22.png", data, 1, 3, entity);
 	}
 
 

@@ -7,6 +7,7 @@ import java.util.List;
 
 import player.Player;
 
+import entityConsole.drawable.SelfDestructionDrawable;
 import entityConsole.models.Bomb;
 import entityConsole.models.BomberEntity;
 import entityConsole.models.Brick;
@@ -72,6 +73,7 @@ public enum Methods {
 				}
 			}
 		}
+		if(res)SelfDestructionDrawable.create("/Flame/Flame.png", data, 5, 5, new Point(x,y));
 		return res;
 	}
 	public static void attackDirectionWithPower(Methods direction,int power,GameData data,List<GameEntity>ignore,int cx,int cy){

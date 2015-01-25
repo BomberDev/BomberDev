@@ -34,7 +34,7 @@ public class BomberCharacter extends GameMovable implements BomberEntity {
 	protected GameData data;
 
 	public BomberCharacter(GameData data,MoveStrategy strategy) {
-		this(2, 1, 2, 1,data, strategy);
+		this(2, 1, 1, 2,data, strategy);
 	}
 	//maybe we should link the health to life, for player.
 	public BomberCharacter(int bombPower, int healthPoints,
@@ -51,7 +51,7 @@ public class BomberCharacter extends GameMovable implements BomberEntity {
 		driver.setStrategy(strategy);
 		driver.setmoveBlockerChecker(data.getMoveBlockerChecker());
 		setDriver(driver);
-		this.strategy.getSpeedVector().setSpeed(3+speed*2);
+		this.strategy.getSpeedVector().setSpeed(2+speed*2);
 	}
 
 	public void setGameData(GameData data){
@@ -106,8 +106,7 @@ public class BomberCharacter extends GameMovable implements BomberEntity {
 
 	private void die() {
 		this.drawable.animDying(data);
-		if(--this.healthPoints<=0)this.data.getUniverse().removeGameEntity(this);
-		else this.setPosition(2, 2);
+		this.data.getUniverse().removeGameEntity(this);
 	}
 
 	public void setPosition(int x,int y){

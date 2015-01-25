@@ -56,6 +56,6 @@ public class CharacterDrawable extends BomberDrawable implements Overlappable{
 	}
 
 	public void animDying(GameData data) {
-		SelfDestructionDrawable.create("/Flame/Flame.png", data, 5, 5, entity);
+		SelfDestructionDrawable.create("/Flame/Flame.png", data, 5, 5, (Point)entity.getPosition().clone());
 	}
 }
