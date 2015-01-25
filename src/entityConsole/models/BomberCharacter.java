@@ -58,6 +58,11 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 		this.speedVector.setSpeed(5+speed);
 	}
 
+	public void setGameData(GameData data){
+		this.data=data;
+		this.console.setGameData(data);
+	}
+	
 	public void incrimentSpeed(){
 		//TODO unverified
 		this.speedVector.setSpeed(5+speed++);
@@ -88,6 +93,7 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 	 *         <code>false</code> else;
 	 */
 	public boolean plantBomb() {
+		if(this.healthPoints<=0)return false;
 		if (this.bombStock > 0) {
 			this.console.createEntity(this.position.x, this.position.y);
 			this.bombStock--;
@@ -102,7 +108,8 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 
 	private void die() {
 		this.drawable.animDying(data);
-		this.data.getUniverse().removeGameEntity(this);
+		if(--this.healthPoints<=0)this.data.getUniverse().removeGameEntity(this);
+		else this.setPosition(2, 2);
 	}
 
 	public void setPosition(int x,int y){

@@ -29,55 +29,32 @@ public class Main {
 		GameData gameData = new GameData(config);
 		ObservableValue<Integer> score = gameData.getScore();
 		ObservableValue<Integer> life = gameData.getLife();
+		GameCanvas canvas = gameData.getCanvas();
 
-		GameLevel level = new GameLevel1(gameData);
-		gameData.addLevel(level);
 
-		
-		// STRATEGIES
+		// PLAYER
 
 		PlayerKeyboard strategyKeyboard = new PlayerKeyboard();
-		MoveStrategyRandom strategyRandom = new MoveStrategyRandom();
-
-		// PLAYERS
+		canvas.addKeyListener(strategyKeyboard);
 		BomberCharacter player = null;
-		PlayerModel random = null;
 		try{
 		player = new BomberCharacter(gameData, strategyKeyboard);
 		player.initDrawable("/Characters/bomberman.png", gameData, 8);
-		player.setPosition(1,1);
-		
-
-		random = new PlayerModel("/r1.png", gameData, 10, strategyRandom);
-		random.setPoint(7,10);
 		}catch(IllegalArgumentException e){
 			System.out.println("Error:"+e.getLocalizedMessage()+"\n at Main.java an image can't be found");
 			System.exit(0);
 		}
-		
-		//strategyKeyboard.setEntity(player);
 		strategyKeyboard.setEntity(player);
-		random.setPoint(50, 50);
-
-		// ADD ENTITIES
-
-		gameData.getUniverse().addGameEntity(player);
-		gameData.getUniverse().addGameEntity(random);
 		
+		//add level should after create player
+		GameLevel level = new GameLevel1(gameData, player);
+		gameData.addLevel(level);
+		
+		
+		//Init gui
 		Game game = new GameDefaultImpl(gameData);
-		/*
-		 * GameUniverseViewPort universeViewPort = new
-		 * GameUniverseViewPortDefaultImpl();
-		 * universeViewPort.setGameData(gameData); universeViewPort.paint();
-		 */
-		GameCanvas canvas = gameData.getCanvas();
-
-		canvas.addKeyListener(strategyKeyboard);
-		
 		GameWindow gameWindow = new GameWindow("BomberDev", canvas, config,new GameStatusBarElement<Integer>("score",score),new GameStatusBarElement<Integer>("life",life));
-
 		gameWindow.createGUI();
-
 		game.start();
 		level.run();
 
