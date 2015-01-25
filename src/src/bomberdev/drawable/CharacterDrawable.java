@@ -3,6 +3,7 @@ package src.bomberdev.drawable;
 import gameframework.drawing.GameCanvas;
 import gameframework.drawing.SpriteManagerDefaultImpl;
 
+import java.awt.Graphics;
 import java.awt.Point;
 
 import src.bomberdev.model.BomberEntity;
@@ -66,5 +67,10 @@ public class CharacterDrawable extends BomberDrawable {
 
 	public void animDying() {
 		// TODO: implement
+	}
+	
+	@Override
+	public void draw(Graphics g) {
+		super.draw(g);
 	}
 }

@@ -37,6 +37,8 @@ public class FactoryDrawable {
 			list.add(draw);
 		}
 		
+		list.add(list.remove(0));
+		
 		// Now, add the whole list to the GameUniverse
 		for(BomberDrawable draw : list) {
 			univ.addGameEntity(draw);
