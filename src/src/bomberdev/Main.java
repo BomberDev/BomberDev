@@ -41,7 +41,7 @@ public class Main {
 		// PLAYER
 		Character character = new Character(gameData.getUniverse());
 
-		BomberMap map = new BomberMap("testMap.txt", 6, 6);
+		BomberMap map = new BomberMap("BomberMap.txt", 13, 15);
 		GameLevel level = new BomberLevel(gameData, map);
 		gameData.addLevel(level);
 

@@ -6,7 +6,7 @@ import gameframework.game.GameUniverse;
 public class BomberConfig extends GameConfiguration {
 
 	public BomberConfig() {
-		super(30, 60, 16, 3);
+		super(13, 15, 64, 1);
 	}
 
 	@Override
