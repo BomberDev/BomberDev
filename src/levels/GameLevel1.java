@@ -6,10 +6,12 @@ import java.util.LinkedList;
 import player.Player;
 
 
+import entityConsole.BombUpConsole;
 import entityConsole.Console;
 import entityConsole.DestructibleBrickConsole;
 import entityConsole.IndestructibleBrickConsole;
 import entityConsole.PowerUpConsole;
+import entityConsole.SpeedUpConsole;
 import entityConsole.models.BomberCharacter;
 import update.GameUniverseViewPortImpl;
 import gameframework.game.GameData;
@@ -49,10 +51,17 @@ public class GameLevel1 extends GameLevelDefaultImpl implements GameLevel {
 		DestructibleBrickConsole explodableBlock = new DestructibleBrickConsole("/Blocks/ExplodableBlock.png", 1);
 		IndestructibleBrickConsole solidBlock = new IndestructibleBrickConsole("/Blocks/SolidBlock.png", 1);
 		PowerUpConsole fp = new PowerUpConsole("/Powerups/FlamePowerup.png", 1);
+		BombUpConsole bp = new BombUpConsole("/Powerups/BombPowerup.png", 1);
+		SpeedUpConsole sp = new SpeedUpConsole("/Powerups/SpeedPowerup.png", 1);
 		explodableBlock.setGameData(data);
 		solidBlock.setGameData(data);
 		fp.setGameData(data);
-		fp.createEntity(1, 8);
+		bp.setGameData(data);
+		sp.setGameData(data);
+		fp.createEntity(1, 7);
+		sp.createEntity(17, 7);
+		sp.createEntity(9, 13);
+		bp.createEntity(9, 1);
 		for(int i = 0;i<19;i++)	solidBlock.createEntity(i,0);
 		for(int i = 0;i<19;i++)	solidBlock.createEntity(i,14);
 		for(int i = 1;i<14;i++)	solidBlock.createEntity(0,i);

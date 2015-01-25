@@ -1,5 +1,6 @@
 package entityConsole.drawable;
 
+import entityConsole.models.BomberCharacter;
 import entityConsole.models.BomberEntity;
 import gameframework.drawing.GameCanvas;
 import gameframework.game.GameData;
@@ -32,13 +33,13 @@ public class CharacterDrawable extends BomberDrawable implements Overlappable{
 	public void draw(Graphics g) {
 		Point imagePosition = (Point) this.entity.getPosition().clone();
 		imagePosition.x-=this.getRenderingSize()/4;
-		imagePosition.y-=this.getRenderingSize()/2;
+		imagePosition.y-=this.getRenderingSize()*2/3;
 		this.spriteManager.draw(g, imagePosition);
 	}
 	@Override
 	public Rectangle getBoundingBox() {
 		Dimension dimension = new Dimension();
-		dimension.setSize(this.getRenderingSize()/2, this.getRenderingSize()/2);
+		dimension.setSize(this.getRenderingSize()/2-((BomberCharacter)this.entity).getSpeed()*4, this.getRenderingSize()/2-((BomberCharacter)this.entity).getSpeed()*4);
 		return new Rectangle(this.getPosition(),dimension);
 	}
 	

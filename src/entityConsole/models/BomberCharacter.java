@@ -51,7 +51,7 @@ public class BomberCharacter extends GameMovable implements BomberEntity {
 		driver.setStrategy(strategy);
 		driver.setmoveBlockerChecker(data.getMoveBlockerChecker());
 		setDriver(driver);
-		this.speedVector.setSpeed(5+speed);
+		this.strategy.getSpeedVector().setSpeed(3+speed*2);
 	}
 
 	public void setGameData(GameData data){
@@ -61,7 +61,8 @@ public class BomberCharacter extends GameMovable implements BomberEntity {
 	
 	public void incrimentSpeed(){
 		//TODO unverified
-		this.speedVector.setSpeed(5+speed++);
+		this.strategy.getSpeedVector().setSpeed(this.strategy.getSpeedVector().getSpeed()+2);
+		this.speed++;
 	}
 	
 	public int getSpeed(){
