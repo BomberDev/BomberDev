@@ -21,6 +21,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/lille-game-framework-master"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/lille-game-framework"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
