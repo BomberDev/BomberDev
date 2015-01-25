@@ -39,11 +39,8 @@ public class BomberMap {
 			while (fileReader.hasNext()) {
 				for (int i = 0; i < rows; i++) {
 					line = fileReader.nextLine();
-					System.out.println(i);
-					line.split(" ");
 					Scanner lineReader = new Scanner(line);
 					for (int j = 0; j < columns; j++) {
-						System.out.println(new Point(i, j).toString());
 						bricks[i][j] = lineReader.nextInt();
 					}
 					lineReader.close();

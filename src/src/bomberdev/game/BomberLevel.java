@@ -4,7 +4,9 @@ import gameframework.game.GameData;
 import gameframework.game.GameLevelDefaultImpl;
 
 import java.io.File;
+import java.util.Arrays;
 
+import src.bomberdev.LevelFinder;
 import src.bomberdev.model.Block;
 import src.bomberdev.model.BomberMap;
 
@@ -14,16 +16,19 @@ public class BomberLevel extends GameLevelDefaultImpl {
 
 	protected BomberMap map;
 	protected File actualLevel;
+	protected LevelFinder finder = new LevelFinder(new File(
+			"target/classes/Resources/Maps"));
 
-	public BomberLevel(GameData data) {
+	public BomberLevel(GameData data, int rows, int columns) {
 		super(data);
-		this.actualLevel = new File(getMapsFiles(PACKAGE_NAME)[0]);
-		this.map = new BomberMap(actualLevel.getName(), 9, 17);
+		this.actualLevel = getMapsFiles()[0];
+		this.map = new BomberMap(actualLevel.getName(), rows, columns);
 	}
 
-	public String[] getMapsFiles(String path) {
-		File folder = new File(path);
-		return folder.list();
+	public File[] getMapsFiles() {
+		File[] levels = finder.levelFile();
+		Arrays.sort(levels);
+		return levels;
 	}
 
 	@Override

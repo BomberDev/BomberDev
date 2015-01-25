@@ -43,7 +43,7 @@ public class CharacterDrawable extends BomberDrawable {
 				type = "down";
 				break;
 			default:
-				type = "null";
+				type = "down";
 				break;
 			}
 		}
@@ -51,6 +51,7 @@ public class CharacterDrawable extends BomberDrawable {
 		this.manager.setType(type);
 	}
 
+	@Override
 	public void animIdle() {
 	}
 

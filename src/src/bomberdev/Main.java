@@ -7,8 +7,10 @@ import gameframework.game.GameConfiguration;
 import gameframework.game.GameData;
 import gameframework.game.GameDefaultImpl;
 import gameframework.game.GameLevel;
-import gameframework.gui.GameWindow;
 import gameframework.motion.MoveStrategyKeyboard;
+
+import java.awt.Point;
+
 import src.bomberdev.drawable.CharacterDrawable;
 import src.bomberdev.game.BomberConfig;
 import src.bomberdev.game.BomberLevel;
@@ -31,12 +33,11 @@ public class Main {
 		// GAME CONFIGURATION
 
 		GameConfiguration config = initialiseConfig();
-
 		GameData gameData = new GameData(config);
 		ObservableValue<Integer> score = gameData.getScore();
 		ObservableValue<Integer> life = gameData.getLife();
 
-		GameLevel level = new BomberLevel(gameData);
+		GameLevel level = new BomberLevel(gameData, 9, 17);
 		gameData.addLevel(level);
 
 		Game game = new GameDefaultImpl(gameData);
@@ -51,11 +52,13 @@ public class Main {
 		Character character = new Character(gameData.getUniverse());
 
 		// DRAWABLES
-		character.setDrawable(new CharacterDrawable(
+		CharacterDrawable drawable = new CharacterDrawable(
 				"/Resources/Graphics/Characters/bomberman.png", character,
-				canvas));
+				canvas);
+		drawable.setDirection(new Point(50, 50));
+		character.setDrawable(drawable);
 
-		GameWindow gameWindow = new GameWindow(canvas, config, score, life);
+		Window gameWindow = new Window("BomberDev", canvas, config, score, life);
 
 		gameWindow.createGUI();
 

@@ -2,19 +2,18 @@ package src.bomberdev.game;
 
 import gameframework.drawing.Drawable;
 import gameframework.game.GameLevel;
+import gameframework.motion.Movable;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
-import src.bomberdev.model.Character;
+import java.util.ArrayList;
 
 public class Objective implements Drawable {
 
-	protected Character[] players;
-	protected GameLevel level;
+	protected BomberLevel level;
 
-	public Objective(Character[] players) {
-		this.players = players;
+	public Objective(BomberLevel level) {
+		this.level = level;
 	}
 
 	public boolean isDone() {
@@ -23,7 +22,7 @@ public class Objective implements Drawable {
 
 	public int nbOfSurvivors() {
 		int nbOfSurvivors = 0;
-		for (int i = 0; i < players.length; i++) {
+		for (int i = 0; i < ; i++) {
 			if (players[i].getHealth() > 0)
 				nbOfSurvivors++;
 		}
