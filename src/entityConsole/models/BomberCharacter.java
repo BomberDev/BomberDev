@@ -110,7 +110,7 @@ public class BomberCharacter extends GameMovable implements BomberEntity {
 	}
 
 	public void setPosition(int x,int y){
-		this.position.setLocation(x*this.drawable.getRenderingSize(), y*this.drawable.getRenderingSize());
+		this.position.setLocation(x*this.data.getConfiguration().getSpriteSize(), y*this.data.getConfiguration().getSpriteSize());
 	}
 	
 	public void incrementBombStock() {

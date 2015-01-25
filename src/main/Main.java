@@ -23,7 +23,7 @@ public class Main {
 
 		// INITIALIZATION
 
-		GameConfiguration config = new Config(15, 20, 40, 5);
+		GameConfiguration config = new Config(15, 19, 40, 5);
 		GameData gameData = new GameData(config);
 		ObservableValue<Integer> score = gameData.getScore();
 		ObservableValue<Integer> life = gameData.getLife();
