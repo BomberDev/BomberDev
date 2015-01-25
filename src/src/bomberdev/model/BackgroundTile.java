@@ -3,6 +3,7 @@ package src.bomberdev.model;
 import gameframework.drawing.GameCanvas;
 
 import java.awt.Point;
+import java.awt.Rectangle;
 
 import src.bomberdev.drawable.BackgroundTileDrawable;
 import src.bomberdev.drawable.BomberDrawable;
@@ -22,6 +23,11 @@ public class BackgroundTile extends Tile {
 	public void onTakingDamage(int damage) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Rectangle getBoundingBox() {
+		return new Rectangle(64, 64);
 	}
 
 }

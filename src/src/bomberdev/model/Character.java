@@ -62,7 +62,7 @@ public class Character extends GameMovable implements BomberEntity, MoveBlocker 
 		this.bombArea = bombArea;
 		this.healthPoints = healthPoints;
 		this.direction = new Point(0, 1);
-		this.position.setLocation(new Point(1,1));
+		this.position.setLocation(new Point(0,0));
 		this.strategy = new PlayerKeyboard(this);
 		
 		init();

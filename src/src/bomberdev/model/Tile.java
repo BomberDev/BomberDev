@@ -1,12 +1,14 @@
 package src.bomberdev.model;
 
+import gameframework.motion.overlapping.Overlappable;
+
 import java.awt.Point;
 
 import src.bomberdev.drawable.BlockDrawable;
 import src.bomberdev.drawable.BomberDrawable;
 import src.bomberdev.game.BomberUniverse;
 
-public abstract class Tile implements BomberEntity {
+public abstract class Tile implements BomberEntity, Overlappable {
 
 	protected BomberUniverse univ;
 	protected final Point position;
