@@ -1,7 +1,7 @@
 package entityConsole.drawable;
 
 import entityConsole.models.BomberEntity;
-import entityConsole.models.Brick;
+import entityConsole.models.Block;
 import gameframework.game.GameData;
 import gameframework.motion.Movable;
 import gameframework.motion.SpeedVector;
@@ -22,7 +22,7 @@ public class SelfDestructionDrawable extends BomberDrawable implements Movable {
 		new SelfDestructionDrawable(filename, data, maxSpriteNumber, displayNumber,entity);
 	}
 	public static void create(String filename,GameData data,int maxSpriteNumber,int displayNumber,Point position){
-		new SelfDestructionDrawable(filename, data, maxSpriteNumber, displayNumber,new Brick(position){
+		new SelfDestructionDrawable(filename, data, maxSpriteNumber, displayNumber,new Block(position){
 
 			@Override
 			public void onTakingDamage() {

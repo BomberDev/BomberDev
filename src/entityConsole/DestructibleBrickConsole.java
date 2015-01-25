@@ -2,19 +2,19 @@ package entityConsole;
 
 import java.awt.Point;
 
-import entityConsole.drawable.BrickDrawable;
+import entityConsole.drawable.BlockDrawable;
 import entityConsole.drawable.SelfDestructionDrawable;
-import entityConsole.models.Brick;
+import entityConsole.models.Block;
 
-public class DestructibleBrickConsole extends Console<Brick, BrickDrawable> {
+public class DestructibleBrickConsole extends Console<Block, BlockDrawable> {
 
 	public DestructibleBrickConsole(String imagefile, int maxSpriteNumber) {
 		super(imagefile, maxSpriteNumber);
 	}
 
 	@Override
-	protected Brick creationEntity(int row, int column) {
-		return new Brick(new Point(renderingSize * row, renderingSize * column)) {
+	protected Block creationEntity(int row, int column) {
+		return new Block(new Point(renderingSize * row, renderingSize * column)) {
 			@Override
 			public void onTakingDamage() {
 				DestructibleBrickConsole.this.deleteEntity(this);
@@ -23,13 +23,13 @@ public class DestructibleBrickConsole extends Console<Brick, BrickDrawable> {
 	}
 
 	@Override
-	protected BrickDrawable creationDrawable(Brick entity) {
-		return new BrickDrawable(imagefile, data.getCanvas(), renderingSize,
+	protected BlockDrawable creationDrawable(Block entity) {
+		return new BlockDrawable(imagefile, data.getCanvas(), renderingSize,
 				maxSpriteNumber, entity);
 	}
 
 	@Override
-	protected void deathPlay(Brick entity) {
+	protected void deathPlay(Block entity) {
 		SelfDestructionDrawable.create("/Flame/Flame.png", data, 5, 5, entity);
 	}
 

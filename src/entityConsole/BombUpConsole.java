@@ -2,19 +2,19 @@ package entityConsole;
 
 import java.awt.Point;
 
-import entityConsole.drawable.ItemsDrawable;
+import entityConsole.drawable.ItemDrawable;
 import entityConsole.models.BomberCharacter;
-import entityConsole.models.PowerUper;
+import entityConsole.models.PowerUpper;
 
-public class BombUpConsole extends Console<PowerUper, ItemsDrawable> {
+public class BombUpConsole extends Console<PowerUpper, ItemDrawable> {
 
 	public BombUpConsole(String imagefile, int maxSpriteNumber) {
 		super(imagefile, maxSpriteNumber);
 	}
 
 	@Override
-	protected PowerUper creationEntity(int row, int column) {
-		return new PowerUper(new Point(renderingSize * row, renderingSize
+	protected PowerUpper creationEntity(int row, int column) {
+		return new PowerUpper(new Point(renderingSize * row, renderingSize
 				* column), data, this) {
 
 			@Override
@@ -25,13 +25,13 @@ public class BombUpConsole extends Console<PowerUper, ItemsDrawable> {
 	}
 
 	@Override
-	protected ItemsDrawable creationDrawable(PowerUper entity) {
+	protected ItemDrawable creationDrawable(PowerUpper entity) {
 		entity.createDrawable(this.imagefile, maxSpriteNumber);
 		return entity.getDrawable();
 	}
 
 	@Override
-	protected void deathPlay(PowerUper entity) {
+	protected void deathPlay(PowerUpper entity) {
 	}
 
 }

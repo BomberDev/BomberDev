@@ -7,11 +7,11 @@ import gameframework.motion.overlapping.Overlappable;
 import java.awt.Point;
 
 
-public class ItemsDrawable extends BomberDrawable implements Overlappable{
+public class ItemDrawable extends BomberDrawable implements Overlappable{
 
 	
 	
-	public ItemsDrawable(String filename, GameCanvas canvas, int renderingSize,
+	public ItemDrawable(String filename, GameCanvas canvas, int renderingSize,
 			int maxSpriteNumber, BomberEntity entity) {
 		super(filename, canvas, renderingSize, maxSpriteNumber, entity);
 	}

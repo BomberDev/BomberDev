@@ -6,22 +6,22 @@ import java.awt.Rectangle;
 import other.Methods;
 
 import entityConsole.Console;
-import entityConsole.drawable.ItemsDrawable;
+import entityConsole.drawable.ItemDrawable;
 
 import gameframework.drawing.GameCanvas;
 import gameframework.game.GameData;
 import gameframework.motion.Movable;
 import gameframework.motion.SpeedVector;
 
-public abstract class PowerUper implements BomberEntity, Movable {
+public abstract class PowerUpper implements BomberEntity, Movable {
 
 	protected GameData data;
 	protected Point position;
-	protected Console<PowerUper, ItemsDrawable> console;
-	private ItemsDrawable drawable;
+	protected Console<PowerUpper, ItemDrawable> console;
+	private ItemDrawable drawable;
 
-	public PowerUper(Point position, GameData data,
-			Console<PowerUper, ItemsDrawable> console) {
+	public PowerUpper(Point position, GameData data,
+			Console<PowerUpper, ItemDrawable> console) {
 		this.position = position;
 		this.data = data;
 		this.console = console;
@@ -34,11 +34,11 @@ public abstract class PowerUper implements BomberEntity, Movable {
 
 	public void createDrawable(String filename, GameCanvas canvas,
 			int renderingSize, int maxSpriteNumber) {
-		this.drawable = new ItemsDrawable(filename, canvas, renderingSize,
+		this.drawable = new ItemDrawable(filename, canvas, renderingSize,
 				maxSpriteNumber, this);
 	}
 
-	public ItemsDrawable getDrawable() {
+	public ItemDrawable getDrawable() {
 		return this.drawable;
 	}
 

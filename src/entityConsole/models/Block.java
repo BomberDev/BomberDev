@@ -2,14 +2,14 @@ package entityConsole.models;
 
 import java.awt.Point;
 
-import entityConsole.drawable.BrickDrawable;
+import entityConsole.drawable.BlockDrawable;
 
-public abstract class Brick implements BomberEntity {
+public abstract class Block implements BomberEntity {
 
 	protected final Point position;
-	protected BrickDrawable drawable;
+	protected BlockDrawable drawable;
 
-	public Brick(Point position) {
+	public Block(Point position) {
 		this.position = position;
 	}
 

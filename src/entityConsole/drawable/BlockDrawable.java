@@ -1,16 +1,16 @@
 package entityConsole.drawable;
 
 import entityConsole.models.BomberEntity;
-import entityConsole.models.Brick;
+import entityConsole.models.Block;
 import gameframework.drawing.GameCanvas;
 import gameframework.motion.blocking.MoveBlocker;
 import gameframework.motion.overlapping.Overlappable;
 
 import java.awt.Point;
 
-public class BrickDrawable extends BomberDrawable implements MoveBlocker,Overlappable  {
+public class BlockDrawable extends BomberDrawable implements MoveBlocker,Overlappable  {
 
-	public BrickDrawable(String filename, GameCanvas canvas, int renderingSize,
+	public BlockDrawable(String filename, GameCanvas canvas, int renderingSize,
 			int maxSpriteNumber, BomberEntity entity) {
 		super(filename, canvas, renderingSize, maxSpriteNumber, entity);
 	}
@@ -21,7 +21,7 @@ public class BrickDrawable extends BomberDrawable implements MoveBlocker,Overlap
 	}
 
 	public void animDestroy() {
-		((Brick)entity).onTakingDamage();
+		((Block)entity).onTakingDamage();
 	}
 
 }

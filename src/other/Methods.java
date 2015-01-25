@@ -10,7 +10,7 @@ import player.Player;
 import entityConsole.drawable.SelfDestructionDrawable;
 import entityConsole.models.Bomb;
 import entityConsole.models.BomberEntity;
-import entityConsole.models.Brick;
+import entityConsole.models.Block;
 import gameframework.game.GameData;
 import gameframework.game.GameEntity;
 
@@ -77,7 +77,7 @@ public enum Methods {
 				int fx = PTC(data, x);
 				int fy = PTC(data, y);
 				if (fx == dx && fy == dy) {
-					if (entity instanceof Brick)
+					if (entity instanceof Block)
 						res = false;
 					if (entity instanceof Bomb)
 						((Bomb) entity).onTakingDamage(ignore);
