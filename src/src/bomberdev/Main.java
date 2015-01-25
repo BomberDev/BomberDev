@@ -1,6 +1,5 @@
 package src.bomberdev;
 
-import other.PlayerKeyboard;
 import gameframework.base.ObservableValue;
 import gameframework.drawing.GameCanvas;
 import gameframework.game.Game;
@@ -9,8 +8,6 @@ import gameframework.game.GameData;
 import gameframework.game.GameDefaultImpl;
 import gameframework.game.GameLevel;
 import gameframework.gui.GameWindow;
-import gameframework.motion.MoveStrategyKeyboard;
-import src.bomberdev.drawable.CharacterDrawable;
 import src.bomberdev.drawable.FactoryDrawable;
 import src.bomberdev.game.BomberConfig;
 import src.bomberdev.game.BomberLevel;
