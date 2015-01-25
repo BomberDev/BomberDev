@@ -1,7 +1,5 @@
 package src.bomberdev.drawable;
 
-import java.awt.Point;
-
 import gameframework.drawing.GameCanvas;
 import gameframework.drawing.SpriteManagerDefaultImpl;
 import src.bomberdev.model.BomberEntity;
