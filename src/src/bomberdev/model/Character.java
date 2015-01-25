@@ -10,10 +10,10 @@ import gameframework.motion.blocking.MoveBlocker;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import other.PlayerKeyboard;
 import src.bomberdev.drawable.BomberDrawable;
 import src.bomberdev.drawable.CharacterDrawable;
 import src.bomberdev.game.BomberUniverse;
+import src.bomberdev.model.motion.PlayerKeyboard;
 
 public class Character extends GameMovable implements BomberEntity, MoveBlocker {
 
@@ -63,7 +63,7 @@ public class Character extends GameMovable implements BomberEntity, MoveBlocker 
 		this.healthPoints = healthPoints;
 		this.direction = new Point(0, 1);
 		this.position.setLocation(new Point(1,1));
-		this.strategy = new PlayerKeyboard();
+		this.strategy = new PlayerKeyboard(this);
 		
 		init();
 	}
