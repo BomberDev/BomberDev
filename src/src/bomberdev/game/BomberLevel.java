@@ -1,12 +1,9 @@
 package src.bomberdev.game;
 
-import java.awt.Point;
-
-import src.bomberdev.model.Block;
-import src.bomberdev.model.BomberMap;
-import src.bomberdev.model.SolidBlock;
 import gameframework.game.GameData;
 import gameframework.game.GameLevelDefaultImpl;
+import src.bomberdev.model.BomberMap;
+import src.bomberdev.model.Tile;
 
 public class BomberLevel extends GameLevelDefaultImpl {
 
@@ -26,20 +23,20 @@ public class BomberLevel extends GameLevelDefaultImpl {
 		
 		for (int j = 0; j < map.getNbRows(); j++) {
 			for (int i = 0; i < map.getNbColumns(); i++) {
-				Block block = map.getBrickAt(j, i);
+				Tile tile = map.getTileAt(j, i);
 				
-				if(block != null) {	
-					this.universe.addGameEntity(block);
+				if(tile != null) {	
+					this.universe.addGameEntity(tile);
 				}
 			}
 		}
 
 		for (int j = 0; j < map.getNbRows(); j++) {
 			for (int i = 0; i < map.getNbColumns(); i++) {
-				Block block = map.getBrickAt(j, i);
+				Tile tile = map.getTileAt(j, i);
 				
-				if(block != null) {				
-					this.universe.addGameEntity(block.draw(this.data.getCanvas()));
+				if(tile != null) {				
+					this.universe.addGameEntity(tile.draw(this.data.getCanvas()));
 				}
 			}
 		}

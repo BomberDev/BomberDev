@@ -7,21 +7,21 @@ import java.util.Scanner;
 
 public class BomberMap {
 
-	private Block[][] bricks;
+	private Tile[][] tiles;
 
 	public BomberMap(String fName, int rows, int columns) {
 		String filename = "target/classes/Resources/Maps/" + fName;
-		this.bricks = new Block[rows][columns];
-		int[][] bricks = getBricksArray(filename, rows, columns);
+		this.tiles = new Tile[rows][columns];
+		int[][] tiles = getTilesArray(filename, rows, columns);
 
 		for (int j = 0; j < rows; j++) {
 			for (int i = 0; i < columns; i++) {
-				if (bricks[j][i] == 0) {
-					
-				} else if (bricks[j][i] == 1) {
-					this.bricks[j][i] = new SolidBlock(new Point(i, j));
-				} else if (bricks[j][i] == 2) {
-					this.bricks[j][i] = new ExplodableBlock(new Point(i, j));
+				if (tiles[j][i] == 0) {
+					this.tiles[j][i] = new BackgroundTile(new Point(i, j));
+				} else if (tiles[j][i] == 1) {
+					this.tiles[j][i] = new SolidBlock(new Point(i, j));
+				} else if (tiles[j][i] == 2) {
+					this.tiles[j][i] = new ExplodableBlock(new Point(i, j));
 				} else {
 					throw new RuntimeException(
 							"Bricks must be represented by 0 for a DestrutibleBrick or 1 for a SolidBrick");
@@ -30,8 +30,8 @@ public class BomberMap {
 		}
 	}
 
-	public static int[][] getBricksArray(String fileName, int rows, int columns) {
-		int[][] bricks = new int[rows][columns];
+	public static int[][] getTilesArray(String fileName, int rows, int columns) {
+		int[][] tiles = new int[rows][columns];
 		Scanner fileReader;
 		String line;
 		try {
@@ -42,7 +42,7 @@ public class BomberMap {
 					line.split(" ");
 					Scanner lineReader = new Scanner(line);
 					for (int j = 0; j < columns; j++) {
-						bricks[i][j] = lineReader.nextInt();
+						tiles[i][j] = lineReader.nextInt();
 					}
 					lineReader.close();
 				}
@@ -52,18 +52,18 @@ public class BomberMap {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return bricks;
+		return tiles;
 	}
 
-	public Block getBrickAt(int i, int j) {
-		return this.bricks[i][j];
+	public Tile getTileAt(int i, int j) {
+		return this.tiles[i][j];
 	}
-	
+
 	public int getNbRows() {
-		return this.bricks.length;
+		return this.tiles.length;
 	}
-	
+
 	public int getNbColumns() {
-		return this.bricks[1].length;
+		return this.tiles[1].length;
 	}
 }

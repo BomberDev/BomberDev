@@ -9,7 +9,6 @@ import gameframework.game.GameDefaultImpl;
 import gameframework.game.GameLevel;
 import gameframework.gui.GameWindow;
 import gameframework.motion.MoveStrategyKeyboard;
-import levels.GameLevel1;
 import src.bomberdev.drawable.CharacterDrawable;
 import src.bomberdev.game.BomberConfig;
 import src.bomberdev.game.BomberLevel;

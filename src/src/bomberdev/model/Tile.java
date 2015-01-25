@@ -1,29 +1,24 @@
 package src.bomberdev.model;
 
-import gameframework.motion.blocking.MoveBlocker;
-
 import java.awt.Point;
-import java.awt.Rectangle;
 
-import src.bomberdev.drawable.BomberDrawable;
 import src.bomberdev.drawable.BlockDrawable;
+import src.bomberdev.drawable.BomberDrawable;
 import src.bomberdev.game.BomberUniverse;
 
-public abstract class Block extends Tile implements MoveBlocker {
+public abstract class Tile implements BomberEntity {
 
-	public Block(Point position) {
-		super(position);
+	protected BomberUniverse univ;
+	protected final Point position;
+	protected BlockDrawable drawable;
+
+	public Tile(Point position) {
+		this.position = position;
 	}
 
 	@Override
 	public Point getPosition() {
 		return new Point(position.x * 64, position.y * 64);
-	}
-
-	@Override
-	public Rectangle getBoundingBox() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -34,7 +29,7 @@ public abstract class Block extends Tile implements MoveBlocker {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Block other = (Block) obj;
+		Tile other = (Tile) obj;
 		if (drawable == null) {
 			if (other.drawable != null)
 				return false;
