@@ -1,6 +1,5 @@
 package main;
 
-import entityConsole.models.BomberCharacter;
 import gameframework.base.ObservableValue;
 import gameframework.drawing.GameCanvas;
 import gameframework.game.Game;
@@ -10,10 +9,9 @@ import gameframework.game.GameDefaultImpl;
 import gameframework.game.GameLevel;
 import gameframework.gui.GameStatusBarElement;
 import gameframework.gui.GameWindow;
-import gameframework.motion.MoveStrategyRandom;
 import levels.GameLevel1;
 import other.PlayerKeyboard;
-import player.PlayerModel;
+import player.Player;
 import update.Config;
 
 public class Main {
@@ -36,9 +34,9 @@ public class Main {
 
 		PlayerKeyboard strategyKeyboard = new PlayerKeyboard();
 		canvas.addKeyListener(strategyKeyboard);
-		BomberCharacter player = null;
+		Player player = null;
 		try{
-		player = new BomberCharacter(gameData, strategyKeyboard);
+		player = new Player(gameData, strategyKeyboard);
 		player.initDrawable("/Characters/bomberman.png", gameData, 8);
 		}catch(IllegalArgumentException e){
 			System.out.println("Error:"+e.getLocalizedMessage()+"\n at Main.java an image can't be found");

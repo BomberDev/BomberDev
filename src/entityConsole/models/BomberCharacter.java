@@ -37,7 +37,7 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 	protected GameData data;
 
 	public BomberCharacter(GameData data,MoveStrategy strategy) {
-		this(2, 1, 1, 1,data, strategy);
+		this(3, 1, 1, 1,data, strategy);
 	}
 	//maybe we should link the health to life, for player.
 	public BomberCharacter(int bombPower, int healthPoints,

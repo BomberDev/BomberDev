@@ -3,6 +3,9 @@ package levels;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import player.Player;
+
+
 import entityConsole.Console;
 import entityConsole.DestructibleBrickConsole;
 import entityConsole.IndestructibleBrickConsole;
@@ -15,7 +18,7 @@ import gameframework.game.GameLevelDefaultImpl;
 
 public class GameLevel1 extends GameLevelDefaultImpl implements GameLevel {
 	BomberCharacter key;
-		public GameLevel1(GameData data,BomberCharacter key) {
+		public GameLevel1(GameData data,Player key) {
 			super(data);
 			this.key=key;
 		}

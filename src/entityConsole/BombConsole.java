@@ -1,6 +1,7 @@
 package entityConsole;
 
 import java.awt.Point;
+
 import entityConsole.models.*;
 import entityConsole.drawable.BombDrawable;
 import entityConsole.drawable.SelfDestructionDrawable;

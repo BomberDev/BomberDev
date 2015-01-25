@@ -5,6 +5,8 @@ import java.awt.event.KeyEvent;
 
 import entityConsole.models.BomberCharacter;
 
+
+
 import gameframework.game.GameEntity;
 import gameframework.motion.MoveStrategyKeyboard;
 

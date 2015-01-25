@@ -2,10 +2,11 @@ package entityConsole.models;
 
 import gameframework.drawing.GameCanvas;
 import gameframework.game.GameData;
-import gameframework.game.GameEntity;
 import java.awt.Point;
-import java.util.Iterator;
 import java.util.Timer;
+
+import other.Methods;
+
 
 import entityConsole.drawable.BombDrawable;
 
@@ -38,22 +39,7 @@ public class Bomb implements BomberEntity {
 		//TODO this method isn't right. it must be stop when meet a brick.
 		
 		// check for all GameEntity caught in the explosion.
-		Iterator<GameEntity> entitys = this.data.getUniverse().getGameEntitiesIterator();
-		for(GameEntity entity;entitys.hasNext();){
-			entity=entitys.next();
-			if(entity.equals(this))continue;
-			if(entity instanceof BomberEntity){//one who will be damaged
-				Point p = ((BomberEntity) entity).getPosition();
-				int size = this.getDrawable().getRenderingSize();
-				int dx = p.x;
-				int dy = p.y;
-				int fx = this.position.x;
-				int fy = this.position.y;
-				if(((dx<=fx+size*0.5)&&(dx>=fx-size*0.5)&&(dy<fy+size*(power))&&(dy>fy-size*(power)))||((dy<=fy+size*0.5)&&(dy>=fy-size*0.5)&&(dx<fx+size*(power))&&(dx>fx-size*(power)))){
-					((BomberEntity) entity).onTakingDamage(this.power);
-				}
-			}
-		}
+		Methods.explode(power, data, this, this.position.x, this.position.y);
 		//----
 		this.owner.getConsole().deleteEntity(this);
 		this.owner.incrementBombStock();
