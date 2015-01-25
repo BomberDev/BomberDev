@@ -9,16 +9,22 @@ import src.bomberdev.model.BomberEntity;
 
 public class CharacterDrawable extends BomberDrawable {
 
-	public CharacterDrawable(String filename, BomberEntity entity,
-			GameCanvas canvas) {
-		super(filename, entity, canvas);
-		this.manager = new SpriteManagerDefaultImpl(this, 128, 8);
+	protected static final int SPRITE_SIZE;
+	protected static final String FILENAME;
+	
+	static {
+		SPRITE_SIZE = 128;
+		FILENAME = "/Resources/Graphics/Characters/bomberman.png";
+	}
+	
+	public CharacterDrawable(BomberEntity entity, GameCanvas canvas) {
+		super(FILENAME, entity, canvas);
+		this.manager = new SpriteManagerDefaultImpl(this, SPRITE_SIZE, 8);
 		init();
 	}
 
 	protected void init() {
 		this.manager.setTypes("right", "left", "down", "up");
-		this.entity.getUniverse().addGameEntity(this);
 	}
 
 	public void setDirection(Point direction) {

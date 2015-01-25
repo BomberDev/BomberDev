@@ -64,7 +64,7 @@ public class Bomb implements BomberEntity, MoveBlocker{
 
 	@Override
 	public Point getPosition() {
-		return this.position;
+		return new Point(this.position);
 	}
 
 

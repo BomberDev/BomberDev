@@ -19,4 +19,10 @@ public class BombDrawable extends BomberDrawable {
 	public void animExplode() {
 		// TODO implement
 	}
+
+	@Override
+	public int getSpriteSize() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

@@ -10,6 +10,7 @@ import gameframework.game.GameLevel;
 import gameframework.gui.GameWindow;
 import gameframework.motion.MoveStrategyKeyboard;
 import src.bomberdev.drawable.CharacterDrawable;
+import src.bomberdev.drawable.FactoryDrawable;
 import src.bomberdev.game.BomberConfig;
 import src.bomberdev.game.BomberLevel;
 import src.bomberdev.model.BomberMap;
@@ -50,9 +51,8 @@ public class Main {
 		canvas.addKeyListener(strategyKeyboard);
 
 		// DRAWABLES
-		character.setDrawable(new CharacterDrawable(
-				"/Resources/Graphics/Characters/bomberman.png", character, canvas));
-
+		FactoryDrawable.createDrawablesForAllEntities(gameData);
+		
 		GameWindow gameWindow = new GameWindow(canvas, config, score, life);
 
 		gameWindow.createGUI();

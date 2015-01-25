@@ -61,7 +61,7 @@ public class Character extends GameMovable implements BomberEntity, MoveBlocker 
 		this.bombPower = bombPower;
 		this.bombArea = bombArea;
 		this.healthPoints = healthPoints;
-		this.direction = new Point(0, 1);
+		this.direction = new Point(2, 2);
 		this.strategy = new PlayerKeyboard();
 		
 		init();
@@ -163,7 +163,6 @@ public class Character extends GameMovable implements BomberEntity, MoveBlocker 
 
 	@Override
 	public BomberDrawable draw(GameCanvas canvas) {
-		// TODO Auto-generated method stub
-		return null;
+		return new CharacterDrawable(this, canvas);
 	}
 }

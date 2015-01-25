@@ -16,14 +16,8 @@ public abstract class Block extends Tile implements MoveBlocker {
 	}
 
 	@Override
-	public Point getPosition() {
-		return new Point(position.x * 64, position.y * 64);
-	}
-
-	@Override
 	public Rectangle getBoundingBox() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Rectangle(64, 64);
 	}
 
 	@Override

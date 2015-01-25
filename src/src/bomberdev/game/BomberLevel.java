@@ -12,6 +12,7 @@ public class BomberLevel extends GameLevelDefaultImpl {
 	public BomberLevel(GameData data, BomberMap map) {
 		super(data);
 		this.map = map;
+		init();
 	}
 
 	@Override
@@ -24,23 +25,8 @@ public class BomberLevel extends GameLevelDefaultImpl {
 		for (int j = 0; j < map.getNbRows(); j++) {
 			for (int i = 0; i < map.getNbColumns(); i++) {
 				Tile tile = map.getTileAt(j, i);
-				
-				if(tile != null) {	
-					this.universe.addGameEntity(tile);
-				}
+				this.universe.addGameEntity(tile);
 			}
 		}
-
-		for (int j = 0; j < map.getNbRows(); j++) {
-			for (int i = 0; i < map.getNbColumns(); i++) {
-				Tile tile = map.getTileAt(j, i);
-				
-				if(tile != null) {				
-					this.universe.addGameEntity(tile.draw(this.data.getCanvas()));
-				}
-			}
-		}
-
 	}
-
 }

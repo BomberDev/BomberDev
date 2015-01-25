@@ -13,12 +13,12 @@ public abstract class Tile implements BomberEntity {
 	protected BlockDrawable drawable;
 
 	public Tile(Point position) {
-		this.position = position;
+		this.position = new Point(position);
 	}
 
 	@Override
 	public Point getPosition() {
-		return new Point(position.x * 64, position.y * 64);
+		return new Point(this.position);
 	}
 
 	@Override

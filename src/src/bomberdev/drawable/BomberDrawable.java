@@ -6,15 +6,22 @@ import gameframework.drawing.SpriteManagerDefaultImpl;
 import gameframework.game.GameEntity;
 
 import java.awt.Graphics;
+import java.awt.Point;
 
 import src.bomberdev.model.BomberEntity;
 
 public abstract class BomberDrawable extends DrawableImage implements
 		GameEntity {
+	
+	public static final int TILE_SPRITE_SIZE;
 
 	protected final BomberEntity entity;
 	protected SpriteManagerDefaultImpl manager;
-
+	
+	static {
+		TILE_SPRITE_SIZE = 64;
+	}
+	
 	public BomberDrawable(String filename, BomberEntity entity,
 			GameCanvas canvas) {
 		super(filename, canvas);
@@ -35,8 +42,21 @@ public abstract class BomberDrawable extends DrawableImage implements
 	 */
 	public abstract void animIdle();
 
+	public int getSpriteSize() {
+		return TILE_SPRITE_SIZE;
+	}
+	
+	public Point computePosition() {
+		Point pos = this.entity.getPosition();
+		int size = getSpriteSize();
+		pos.setLocation(pos.getX() * size, pos.getY() * size);
+		
+		return pos;
+	}
+	
 	@Override
 	public void draw(Graphics g) {
-		this.manager.draw(g, this.entity.getPosition());
+		Point p = computePosition();
+		this.manager.draw(g, p);
 	}
 }

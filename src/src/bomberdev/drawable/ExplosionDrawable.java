@@ -15,5 +15,11 @@ public class ExplosionDrawable extends BomberDrawable {
 		
 	}
 
+	@Override
+	public int getSpriteSize() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }
