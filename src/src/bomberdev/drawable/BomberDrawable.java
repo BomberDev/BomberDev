@@ -42,9 +42,7 @@ public abstract class BomberDrawable extends DrawableImage implements
 	 */
 	public abstract void animIdle();
 
-	public int getSpriteSize() {
-		return TILE_SPRITE_SIZE;
-	}
+	public abstract int getSpriteSize();
 	
 	public Point computePosition() {
 		Point pos = this.entity.getPosition();

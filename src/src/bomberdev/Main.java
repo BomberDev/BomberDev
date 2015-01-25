@@ -7,6 +7,7 @@ import gameframework.game.GameConfiguration;
 import gameframework.game.GameData;
 import gameframework.game.GameDefaultImpl;
 import gameframework.game.GameLevel;
+import gameframework.gui.GameStatusBarElement;
 import gameframework.gui.GameWindow;
 import src.bomberdev.drawable.FactoryDrawable;
 import src.bomberdev.game.BomberConfig;
@@ -52,7 +53,9 @@ public class Main {
 		// DRAWABLES
 		FactoryDrawable.createDrawablesForAllEntities(gameData);
 		
-		GameWindow gameWindow = new GameWindow(canvas, config, score, life);
+		GameWindow gameWindow = new GameWindow("BomberDev", canvas, config,
+				new GameStatusBarElement<Integer>("score", score),
+				new GameStatusBarElement<Integer>("life", life));
 
 		gameWindow.createGUI();
 

@@ -26,4 +26,9 @@ public class BlockDrawable extends BomberDrawable {
 	public void animDestroy() {
 		// TODO Implement
 	}
+	
+	@Override
+	public int getSpriteSize() {
+		return TILE_SPRITE_SIZE;
+	}
 }

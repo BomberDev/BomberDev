@@ -14,7 +14,7 @@ public class CharacterDrawable extends BomberDrawable {
 	protected static final String FILENAME;
 	
 	static {
-		SPRITE_SIZE = 1;
+		SPRITE_SIZE = 128;
 		FILENAME = "/Resources/Graphics/Characters/bomberman.png";
 	}
 	
@@ -36,24 +36,27 @@ public class CharacterDrawable extends BomberDrawable {
 		switch (x) {
 		case -1:
 			type = "left";
+			this.manager.setType(type);
 			break;
 		case 1:
 			type = "right";
+			this.manager.setType(type);
 			break;
 
 		default:
 			switch (y) {
 			case -1:
 				type = "up";
+				this.manager.setType(type);
 				break;
 			case 1:
-			default:
 				type = "down";
+				this.manager.setType(type);
+				break;
+			default:
 				break;
 			}
 		}
-
-		this.manager.setType(type);
 	}
 
 	public void animIdle() {
@@ -65,5 +68,10 @@ public class CharacterDrawable extends BomberDrawable {
 
 	public void animDying() {
 		// TODO: implement
+	}
+	
+	@Override
+	public int getSpriteSize() {
+		return 1;
 	}
 }
