@@ -12,17 +12,18 @@ public abstract class Brick implements BomberEntity {
 	public Brick(Point position) {
 		this.position = position;
 	}
-	
+
 	/**
 	 * Method called when the entity takes damage.
-	 * @param damage The number of damage taken.
+	 * 
+	 * @param damage
+	 *            The number of damage taken.
 	 */
 	public abstract void onTakingDamage();
-	
+
 	@Override
 	public Point getPosition() {
 		return this.position;
 	}
-
 
 }

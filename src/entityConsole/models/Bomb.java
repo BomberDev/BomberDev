@@ -12,49 +12,53 @@ import java.util.LinkedList;
 import java.util.List;
 import other.Methods;
 
-
 import entityConsole.drawable.BombDrawable;
 
-public class Bomb implements BomberEntity,Movable {
+public class Bomb implements BomberEntity, Movable {
 
 	private final BomberCharacter owner;
 	private final int power;
 	protected Point position;
 	protected BombDrawable drawable;
 	protected GameData data;
-	int Countdown = 25;
-	
+	int countdown = 35;
+
 	public Bomb(BomberCharacter owner, Point position, GameData data) {
 		this.owner = owner;
 		this.power = owner.getFirePower();
 		this.position = position;
-		this.data=data;
-	}
-	
-	public void createDrawable(String filename,int maxSpriteNumber){
-		this.createDrawable(filename, data.getCanvas(), data.getConfiguration().getSpriteSize(), maxSpriteNumber);
-	}
-	
-	public void createDrawable(String filename, GameCanvas canvas, int renderingSize,
-			int maxSpriteNumber){
-		this.drawable=new BombDrawable(filename, canvas, renderingSize, maxSpriteNumber, this);
+		this.data = data;
 	}
 
-	public BombDrawable getDrawable(){
+	public void createDrawable(String filename, int maxSpriteNumber) {
+		this.createDrawable(filename, data.getCanvas(), data.getConfiguration()
+				.getSpriteSize(), maxSpriteNumber);
+	}
+
+	public void createDrawable(String filename, GameCanvas canvas,
+			int renderingSize, int maxSpriteNumber) {
+		this.drawable = new BombDrawable(filename, canvas, renderingSize,
+				maxSpriteNumber, this);
+	}
+
+	public BombDrawable getDrawable() {
 		return this.drawable;
 	}
+
 	public void explode() {
 		LinkedList<GameEntity> ignore = new LinkedList<>();
 		ignore.add(this);
 		explode(ignore);
 	}
+
 	public void explode(List<GameEntity> ignore) {
-		//TODO this method isn't right. it must be stop when meet a brick.
-		
-		if(!ignore.contains(this))ignore.add(this);
+		// TODO this method isn't right. it must be stop when meet a brick.
+
+		if (!ignore.contains(this))
+			ignore.add(this);
 		// check for all GameEntity caught in the explosion.
 		Methods.explode(power, data, ignore, this.position.x, this.position.y);
-		//----
+		// ----
 		this.owner.getConsole().deleteEntity(this);
 		this.owner.incrementBombStock();
 	}
@@ -63,7 +67,8 @@ public class Bomb implements BomberEntity,Movable {
 	public void onTakingDamage() {
 		explode();
 	}
-	public void onTakingDamage(List<GameEntity>ignore) {
+
+	public void onTakingDamage(List<GameEntity> ignore) {
 		explode(ignore);
 	}
 
@@ -84,14 +89,14 @@ public class Bomb implements BomberEntity,Movable {
 
 	@Override
 	public void setSpeedVector(SpeedVector m) {
-		
+
 	}
 
 	@Override
 	public void oneStepMove() {
 		this.drawable.increment();
-		if(this.Countdown--<=0)explode();
+		if (this.countdown-- <= 0)
+			explode();
 	}
-
 
 }

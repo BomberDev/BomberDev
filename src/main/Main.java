@@ -31,31 +31,32 @@ public class Main {
 		life.setValue(3);
 		GameCanvas canvas = gameData.getCanvas();
 
-
 		// PLAYER
 
 		PlayerKeyboard strategyKeyboard = new PlayerKeyboard();
 		canvas.addKeyListener(strategyKeyboard);
 		Player player = null;
-		try{
-		player = new Player(gameData, strategyKeyboard, life);
-		player.initDrawable("/Characters/bomberman.png", gameData, 8);
-		}catch(IllegalArgumentException e){
-			System.out.println("Error:"+e.getLocalizedMessage()+"\n at Main.java an image can't be found");
+		try {
+			player = new Player(gameData, strategyKeyboard, life);
+			player.initDrawable("/Characters/bomberman.png", gameData, 8);
+		} catch (IllegalArgumentException e) {
+			System.out.println("Error:" + e.getLocalizedMessage()
+					+ "\n at Main.java an image can't be found");
 			System.exit(0);
 		}
 		strategyKeyboard.setEntity(player);
-		
-		//add level should after create player
+
+		// add level should after create player
 		GameLevel level = new GameLevel1(gameData, player);
 		GameLevel end = new EndLevel(gameData);
 		gameData.addLevel(level);
 		gameData.addLevel(end);
-		
-		
-		//Init gui
+
+		// Init gui
 		Game game = new GameDefaultImpl(gameData);
-		GameWindow gameWindow = new GameWindow("BomberDev", canvas, config,new GameStatusBarElement<Integer>("score",score),new GameStatusBarElement<Integer>("life",life));
+		GameWindow gameWindow = new GameWindow("BomberDev", canvas, config,
+				new GameStatusBarElement<Integer>("score", score),
+				new GameStatusBarElement<Integer>("life", life));
 		gameWindow.createGUI();
 		game.start();
 		level.run();

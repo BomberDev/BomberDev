@@ -14,12 +14,14 @@ public class SpeedUpConsole extends Console<PowerUper, ItemsDrawable> {
 
 	@Override
 	protected PowerUper creationEntity(int row, int column) {
-		return new PowerUper(new Point(renderingSize*row,renderingSize*column), data, this){
+		return new PowerUper(new Point(renderingSize * row, renderingSize
+				* column), data, this) {
 
 			@Override
 			public void PowerUp(BomberCharacter player) {
 				player.incrimentSpeed();
-			}};
+			}
+		};
 	}
 
 	@Override
