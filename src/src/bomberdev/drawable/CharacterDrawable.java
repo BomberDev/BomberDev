@@ -14,7 +14,7 @@ public class CharacterDrawable extends BomberDrawable {
 	protected static final String FILENAME;
 	
 	static {
-		SPRITE_SIZE = 128;
+		SPRITE_SIZE = 1;
 		FILENAME = "/Resources/Graphics/Characters/bomberman.png";
 	}
 	
@@ -47,10 +47,8 @@ public class CharacterDrawable extends BomberDrawable {
 				type = "up";
 				break;
 			case 1:
-				type = "down";
-				break;
 			default:
-				type = "null";
+				type = "down";
 				break;
 			}
 		}
@@ -67,10 +65,5 @@ public class CharacterDrawable extends BomberDrawable {
 
 	public void animDying() {
 		// TODO: implement
-	}
-	
-	@Override
-	public void draw(Graphics g) {
-		super.draw(g);
 	}
 }

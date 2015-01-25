@@ -1,5 +1,6 @@
 package src.bomberdev;
 
+import other.PlayerKeyboard;
 import gameframework.base.ObservableValue;
 import gameframework.drawing.GameCanvas;
 import gameframework.game.Game;
@@ -35,11 +36,12 @@ public class Main {
 		ObservableValue<Integer> score = gameData.getScore();
 		ObservableValue<Integer> life = gameData.getLife();
 
-		// STRATEGY
-		MoveStrategyKeyboard strategyKeyboard = new MoveStrategyKeyboard(false);
 
 		// PLAYER
-		Character character = new Character(gameData.getUniverse());
+		src.bomberdev.model.motion.PlayerKeyboard keyboard = new src.bomberdev.model.motion.PlayerKeyboard();
+		Character character = new Character(gameData.getUniverse(), keyboard);
+		
+		// STRATEGY
 
 		BomberMap map = new BomberMap("BomberMap.txt", 13, 15);
 		GameLevel level = new BomberLevel(gameData, map);
@@ -48,7 +50,7 @@ public class Main {
 		Game game = new GameDefaultImpl(gameData);
 
 		GameCanvas canvas = gameData.getCanvas();
-		canvas.addKeyListener(strategyKeyboard);
+		canvas.addKeyListener(keyboard);
 
 		// DRAWABLES
 		FactoryDrawable.createDrawablesForAllEntities(gameData);

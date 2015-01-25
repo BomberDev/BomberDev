@@ -6,6 +6,7 @@ import gameframework.motion.GameMovable;
 import gameframework.motion.GameMovableDriverDefaultImpl;
 import gameframework.motion.MoveStrategy;
 import gameframework.motion.blocking.MoveBlocker;
+import gameframework.motion.overlapping.Overlappable;
 
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -15,7 +16,7 @@ import src.bomberdev.drawable.CharacterDrawable;
 import src.bomberdev.game.BomberUniverse;
 import src.bomberdev.model.motion.PlayerKeyboard;
 
-public class Character extends GameMovable implements BomberEntity, MoveBlocker {
+public class Character extends GameMovable implements BomberEntity {
 
 	private final BomberUniverse univ;
 	/** The fire power of the bomb in number of health points taken when it damages. */
@@ -45,25 +46,26 @@ public class Character extends GameMovable implements BomberEntity, MoveBlocker 
 		 DEFAULT_STOCK = 1;
 	}
 	
-	public Character(GameUniverse gameUniverse) {
+	public Character(GameUniverse gameUniverse, MoveStrategy strat) {
 		this(gameUniverse,
+			 strat,
 			 DEFAULT_POWER,
 			 DEFAULT_AREA,
 			 DEFAULT_HEALTH,
 			 DEFAULT_STOCK);
 	}
 	
-	public Character(GameUniverse gameUniverse, int bombPower,
+	public Character(GameUniverse gameUniverse, MoveStrategy strat, int bombPower,
 			int bombArea, int healthPoints, int stockBombs) {
 		super();
 		
 		this.univ = (BomberUniverse) gameUniverse;
+		this.strategy = strat;
 		this.bombPower = bombPower;
 		this.bombArea = bombArea;
 		this.healthPoints = healthPoints;
 		this.direction = new Point(0, 1);
 		this.position.setLocation(new Point(0,0));
-		this.strategy = new PlayerKeyboard(this);
 		
 		init();
 	}
@@ -129,15 +131,8 @@ public class Character extends GameMovable implements BomberEntity, MoveBlocker 
 	}
 
 	@Override
-	public void oneStepMove() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public Rectangle getBoundingBox() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Rectangle(64, 64);
 	}
 
 	@Override
@@ -149,7 +144,9 @@ public class Character extends GameMovable implements BomberEntity, MoveBlocker 
 			this.drawable.setDirection(dir);
 		}
 		
-		this.drawable.animMoving();
+		if(!this.direction.equals(new Point(0,0))) {
+			this.drawable.animMoving();
+		}
 	}
 	
 	@Override
