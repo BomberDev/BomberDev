@@ -7,6 +7,7 @@ import java.util.List;
 
 import player.Player;
 
+import entityConsole.models.Bomb;
 import entityConsole.models.BomberEntity;
 import entityConsole.models.Brick;
 import gameframework.game.GameData;
@@ -45,7 +46,7 @@ public enum Methods {
 		}
 		return null;
 	}
-	
+	//we always ignore bomb itself ant his bomber bomb if exist
 	public static boolean attackArea(GameData data,GameEntity ignore,int x,int y){
 		LinkedList<GameEntity> tmp = new LinkedList<GameEntity> ();
 		tmp.add(ignore);
@@ -66,7 +67,8 @@ public enum Methods {
 				int fy = PTC(data,y);
 				if(fx==dx&&fy==dy){
 					if(entity instanceof Brick)res=false;
-					((BomberEntity) entity).onTakingDamage(1);
+					if(entity instanceof Bomb)((Bomb) entity).onTakingDamage(ignore);
+					else((BomberEntity) entity).onTakingDamage();
 				}
 			}
 		}

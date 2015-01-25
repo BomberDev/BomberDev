@@ -2,9 +2,11 @@ package entityConsole.models;
 
 import gameframework.drawing.GameCanvas;
 import gameframework.game.GameData;
-import java.awt.Point;
-import java.util.Timer;
+import gameframework.game.GameEntity;
 
+import java.awt.Point;
+import java.util.LinkedList;
+import java.util.List;
 import other.Methods;
 
 
@@ -15,7 +17,6 @@ public class Bomb implements BomberEntity {
 	private final BomberCharacter owner;
 	private final int power;
 	protected Point position;
-	protected Timer timer;
 	protected BombDrawable drawable;
 	protected GameData data;
 
@@ -34,20 +35,28 @@ public class Bomb implements BomberEntity {
 	public BombDrawable getDrawable(){
 		return this.drawable;
 	}
-	
 	public void explode() {
+		LinkedList<GameEntity> ignore = new LinkedList<>();
+		ignore.add(this);
+		explode(ignore);
+	}
+	public void explode(List<GameEntity> ignore) {
 		//TODO this method isn't right. it must be stop when meet a brick.
 		
+		if(!ignore.contains(this))ignore.add(this);
 		// check for all GameEntity caught in the explosion.
-		Methods.explode(power, data, this, this.position.x, this.position.y);
+		Methods.explode(power, data, ignore, this.position.x, this.position.y);
 		//----
 		this.owner.getConsole().deleteEntity(this);
 		this.owner.incrementBombStock();
 	}
 
 	@Override
-	public void onTakingDamage(int damage) {
+	public void onTakingDamage() {
 		explode();
+	}
+	public void onTakingDamage(List<GameEntity>ignore) {
+		explode(ignore);
 	}
 
 	@Override

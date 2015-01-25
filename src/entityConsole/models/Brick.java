@@ -17,7 +17,7 @@ public abstract class Brick implements BomberEntity {
 	 * Method called when the entity takes damage.
 	 * @param damage The number of damage taken.
 	 */
-	public abstract void onTakingDamage(int damage);
+	public abstract void onTakingDamage();
 	
 	@Override
 	public Point getPosition() {

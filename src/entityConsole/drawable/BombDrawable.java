@@ -12,7 +12,7 @@ import java.awt.Point;
 public class BombDrawable extends BomberDrawable implements MoveBlocker,Movable{
 
 	
-	int Countdown = 15;
+	int Countdown = 22;
 	public BombDrawable(String filename, GameCanvas canvas, int renderingSize,
 			int maxSpriteNumber, BomberEntity entity) {
 		super(filename, canvas, renderingSize, maxSpriteNumber, entity);

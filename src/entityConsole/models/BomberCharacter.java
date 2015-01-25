@@ -1,13 +1,10 @@
 package entityConsole.models;
 
-import gameframework.drawing.Drawable;
 import gameframework.game.GameData;
 import gameframework.motion.GameMovable;
 import gameframework.motion.GameMovableDriverDefaultImpl;
 import gameframework.motion.MoveStrategy;
 import gameframework.motion.SpeedVector;
-import gameframework.motion.overlapping.Overlappable;
-
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -15,7 +12,7 @@ import java.awt.Rectangle;
 import entityConsole.BombConsole;
 import entityConsole.drawable.CharacterDrawable;
 
-public class BomberCharacter extends GameMovable implements BomberEntity,Drawable,Overlappable {
+public class BomberCharacter extends GameMovable implements BomberEntity {
 
 	/** The fire power of the bomb in number of tiles. */
 	private int bombPower;
@@ -24,7 +21,7 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 	/** The number of bombs the character can plant at a time. */
 	private int bombStock;
 	/** The drawable associated with this entity. */
-	private CharacterDrawable drawable;
+	protected CharacterDrawable drawable;
 	int speed;
 	/**
 	 * it's only use for get the vector tendency. the real SpeedVector is from drive.
@@ -37,7 +34,7 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 	protected GameData data;
 
 	public BomberCharacter(GameData data,MoveStrategy strategy) {
-		this(3, 1, 1, 1,data, strategy);
+		this(2, 1, 2, 1,data, strategy);
 	}
 	//maybe we should link the health to life, for player.
 	public BomberCharacter(int bombPower, int healthPoints,
@@ -50,7 +47,6 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 		this.strategy=strategy;
 		this.speed=speed;
 		this.data=data;
-		data.getOverlapProcessor().addOverlappable(this);
 		GameMovableDriverDefaultImpl driver = new GameMovableDriverDefaultImpl();
 		driver.setStrategy(strategy);
 		driver.setmoveBlockerChecker(data.getMoveBlockerChecker());
@@ -78,6 +74,7 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 	
 	public void initDrawable(String filename,GameData data,int maxSpriteNumber){
 		this.drawable=new CharacterDrawable(filename, data.getCanvas(),data.getConfiguration().getSpriteSize()*2 , maxSpriteNumber, this);
+		data.getOverlapProcessor().addOverlappable(drawable);
 	}
 	
 	public BombConsole getConsole(){
@@ -121,8 +118,8 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 	}
 
 	@Override
-	public void onTakingDamage(int damage) {
-		this.healthPoints -= damage;
+	public void onTakingDamage() {
+		this.healthPoints --;
 		if (this.healthPoints <= 0) {
 			die();
 		}
@@ -140,7 +137,6 @@ public class BomberCharacter extends GameMovable implements BomberEntity,Drawabl
 	}
 
 
-	@Override
 	public void draw(Graphics g) {
 		this.drawable.draw(g);
 	}

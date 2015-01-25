@@ -21,7 +21,7 @@ public class BrickDrawable extends BomberDrawable implements MoveBlocker,Overlap
 	}
 
 	public void animDestroy() {
-		((Brick)entity).onTakingDamage(1);
+		((Brick)entity).onTakingDamage();
 	}
 
 }

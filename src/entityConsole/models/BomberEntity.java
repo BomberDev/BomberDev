@@ -5,11 +5,11 @@ import java.awt.Point;
 
 public interface BomberEntity extends GameEntity {
 
+	//damage always 1, power is the length of fire
 	/**
 	 * Method called when the entity takes damage.
-	 * @param damage The number of damage taken.
 	 */
-	void onTakingDamage(int damage);
+	void onTakingDamage();
 	
 	/**
 	 * Gets the position of the entity.

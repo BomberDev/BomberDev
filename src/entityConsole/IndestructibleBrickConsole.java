@@ -18,7 +18,7 @@ public class IndestructibleBrickConsole extends Console<Brick,BrickDrawable>{
 	protected Brick creationEntity(int row, int column) {
 		return new Brick(new Point(renderingSize*row,renderingSize*column)){
 			@Override
-			public void onTakingDamage(int damage) {
+			public void onTakingDamage() {
 				
 			}	
 		};

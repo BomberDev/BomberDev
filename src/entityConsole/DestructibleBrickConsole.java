@@ -18,8 +18,8 @@ public class DestructibleBrickConsole extends Console<Brick,BrickDrawable>{
 	protected Brick creationEntity(int row, int column) {
 		return new Brick(new Point(renderingSize*row,renderingSize*column)){
 			@Override
-			public void onTakingDamage(int damage) {
-				if(damage>0)DestructibleBrickConsole.this.deleteEntity(this);
+			public void onTakingDamage() {
+				DestructibleBrickConsole.this.deleteEntity(this);
 			}	
 		};
 	}

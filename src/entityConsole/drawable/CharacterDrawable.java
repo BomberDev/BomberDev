@@ -3,6 +3,7 @@ package entityConsole.drawable;
 import entityConsole.models.BomberEntity;
 import gameframework.drawing.GameCanvas;
 import gameframework.game.GameData;
+import gameframework.motion.overlapping.Overlappable;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -10,7 +11,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 
-public class CharacterDrawable extends BomberDrawable {
+public class CharacterDrawable extends BomberDrawable implements Overlappable{
 
 	public CharacterDrawable(String filename, GameCanvas canvas, int renderingSize,
 			int maxSpriteNumber, BomberEntity entity) {
