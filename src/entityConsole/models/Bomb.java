@@ -22,7 +22,7 @@ public class Bomb implements BomberEntity,Movable {
 	protected Point position;
 	protected BombDrawable drawable;
 	protected GameData data;
-	int Countdown = 75;
+	int Countdown = 25;
 	
 	public Bomb(BomberCharacter owner, Point position, GameData data) {
 		this.owner = owner;
