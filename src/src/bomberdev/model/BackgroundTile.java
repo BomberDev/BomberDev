@@ -1,6 +1,7 @@
 package src.bomberdev.model;
 
 import gameframework.drawing.GameCanvas;
+import gameframework.motion.overlapping.Overlappable;
 
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -8,7 +9,7 @@ import java.awt.Rectangle;
 import src.bomberdev.drawable.BackgroundTileDrawable;
 import src.bomberdev.drawable.BomberDrawable;
 
-public class BackgroundTile extends Tile {
+public class BackgroundTile extends Tile implements Overlappable {
 
 	public BackgroundTile(Point position) {
 		super(position);
