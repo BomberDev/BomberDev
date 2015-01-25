@@ -117,6 +117,9 @@ public class BomberCharacter extends GameMovable implements BomberEntity {
 		this.bombStock++;
 	}
 
+	public void imcrementPower(){
+		if(this.bombPower<7)this.bombPower++;
+	}
 	@Override
 	public void onTakingDamage() {
 		this.healthPoints --;

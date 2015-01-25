@@ -2,17 +2,16 @@ package entityConsole.drawable;
 
 import entityConsole.models.BomberEntity;
 import gameframework.drawing.GameCanvas;
-import gameframework.motion.blocking.MoveBlocker;
 import gameframework.motion.overlapping.Overlappable;
 
 import java.awt.Point;
 
 
-public class BombDrawable extends BomberDrawable implements MoveBlocker,Overlappable{
+public class ItemsDrawable extends BomberDrawable implements Overlappable{
 
 	
 	
-	public BombDrawable(String filename, GameCanvas canvas, int renderingSize,
+	public ItemsDrawable(String filename, GameCanvas canvas, int renderingSize,
 			int maxSpriteNumber, BomberEntity entity) {
 		super(filename, canvas, renderingSize, maxSpriteNumber, entity);
 	}
