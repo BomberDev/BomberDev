@@ -11,7 +11,6 @@ import entityConsole.drawable.ItemDrawable;
 
 import gameframework.drawing.GameCanvas;
 import gameframework.game.GameData;
-import gameframework.game.GameLevelDefaultImpl;
 import gameframework.motion.Movable;
 import gameframework.motion.SpeedVector;
 

@@ -7,12 +7,9 @@ import other.Methods;
 
 import player.Player;
 
-import entityConsole.BombUpConsole;
 import entityConsole.Console;
 import entityConsole.DestructibleBrickConsole;
 import entityConsole.IndestructibleBrickConsole;
-import entityConsole.PowerUpConsole;
-import entityConsole.SpeedUpConsole;
 import entityConsole.models.BomberCharacter;
 import update.GameUniverseViewPortImpl;
 import gameframework.game.GameData;

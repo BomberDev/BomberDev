@@ -43,6 +43,7 @@ public class Player extends BomberCharacter implements Drawable, Overlappable {
 	public void oneStepMoveAddedBehavior() {
 		super.oneStepMoveAddedBehavior();
 		if(this.noDamage>0)this.noDamage--;
+		if(this.data.getLife().getValue()<=0)this.data.getEndOfGame().setValue(true);
 	}
 }
 

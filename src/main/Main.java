@@ -59,8 +59,10 @@ public class Main {
 				new GameStatusBarElement<Integer>("score", score),
 				new GameStatusBarElement<Integer>("life", life));
 		gameWindow.createGUI();
-		game.start();
-		level.run();
-
+		try{
+			game.start();
+		}catch(java.lang.RuntimeException e){
+			while(true);
+		}
 	}
 }
