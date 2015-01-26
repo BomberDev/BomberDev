@@ -3,6 +3,8 @@ package levels;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import other.Methods;
+
 import player.Player;
 
 import entityConsole.BombUpConsole;
@@ -67,34 +69,24 @@ public class GameLevel1 extends GameLevelDefaultImpl implements GameLevel {
 		sp.createEntity(17, 7);
 		sp.createEntity(9, 13);
 		bp.createEntity(9, 1);
-		for (int i = 0; i < 19; i++)
-			solidBlock.createEntity(i, 0);
-		for (int i = 0; i < 19; i++)
-			solidBlock.createEntity(i, 14);
-		for (int i = 1; i < 14; i++)
-			solidBlock.createEntity(0, i);
-		for (int i = 1; i < 14; i++)
-			solidBlock.createEntity(18, i);
-
-		for (int j = 2; j < 9; j++)
-			for (int i = 2; i < 7; i++)
-				explodableBlock.createEntity(j, i);
-
-		for (int j = 10; j < 17; j++)
-			for (int i = 2; i < 7; i++)
-				explodableBlock.createEntity(j, i);
-
-		for (int j = 2; j < 9; j++)
-			for (int i = 8; i < 13; i++)
-				explodableBlock.createEntity(j, i);
-
-		for (int j = 10; j < 17; j++)
-			for (int i = 8; i < 13; i++)
-				explodableBlock.createEntity(j, i);
-
-		for (int j = 2; j < 18; j += 2)
-			for (int i = 2; i < 14; i += 2)
-				solidBlock.createEntity(j, i);
+		Methods.createMap(data, 0,
+				"2222222222222222222\n" +
+				"2000000000000000002\n" +
+				"2021212120212121202\n" +
+				"2011111110111111102\n" +
+				"2021212120212121202\n" +
+				"2011111110111111102\n" +
+				"2021212120212121202\n" +
+				"2000000000000000002\n" +
+				"2021212120212121202\n" +
+				"2011111110111111102\n" +
+				"2021212120212121202\n" +
+				"2011111110111111102\n" +
+				"2021212120212121202\n" +
+				"2000000000000000002\n" +
+				"2222222222222222222"
+				
+				, explodableBlock, solidBlock);
 
 		// set player
 		universe.addGameEntity(key);

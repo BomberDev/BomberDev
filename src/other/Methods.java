@@ -7,6 +7,8 @@ import java.util.List;
 
 import player.Player;
 
+import entityConsole.DestructibleBrickConsole;
+import entityConsole.IndestructibleBrickConsole;
 import entityConsole.drawable.SelfDestructionDrawable;
 import entityConsole.models.Bomb;
 import entityConsole.models.BomberEntity;
@@ -130,5 +132,26 @@ public enum Methods {
 	private static int CTP(GameData data, int c) {
 		int size = data.getConfiguration().getSpriteSize();
 		return c * size;
+	}
+	public static void createMap(GameData data,int line,String map,DestructibleBrickConsole s,IndestructibleBrickConsole w){
+		int col=0;
+		int l = line;
+		for(int i=0;i<map.length();i++)
+			switch(map.charAt(i)){
+			case '1':
+				s.createEntity(col, l);
+				col++;
+				break;
+			case '2':
+				w.createEntity(col, l);
+				col++;
+				break;
+			case '\n':
+				l++;
+				col=0;
+				break;
+			default:
+				col++;
+			}
 	}
 }
