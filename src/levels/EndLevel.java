@@ -3,6 +3,8 @@ package levels;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import other.Methods;
+
 import entityConsole.Console;
 import entityConsole.DestructibleBrickConsole;
 import entityConsole.IndestructibleBrickConsole;
@@ -50,14 +52,25 @@ public class EndLevel extends GameLevelDefaultImpl implements GameLevel {
 		explodableBlock.setGameData(data);
 		solidBlock.setGameData(data);
 
-		for (int i = 0; i < 19; i++)
-			solidBlock.createEntity(i, 0);
-		for (int i = 0; i < 19; i++)
-			solidBlock.createEntity(i, 14);
-		for (int i = 1; i < 14; i++)
-			solidBlock.createEntity(0, i);
-		for (int i = 1; i < 14; i++)
-			solidBlock.createEntity(18, i);
+
+		Methods.createMap(data, 0,
+				"2222222222222222222\n" +
+				"0000000000000000000\n" +
+				"0111122221001222200\n" +
+				"0100020021111200000\n" +
+				"0101122221001222200\n" +
+				"0100120021001200000\n" +
+				"0111120021001222200\n" +
+				"0000000000000000000\n" +
+				"0222210012222111100\n" +
+				"0200210012000100100\n" +
+				"0200210012222111100\n" +
+				"0200210012000101000\n" +
+				"0222201102222100100\n" +
+				"0000000000000000000\n" +
+				"2222222222222222222\n"
+				, explodableBlock, solidBlock);
+		
 	}
 
 }
