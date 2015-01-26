@@ -7,12 +7,9 @@ import other.Methods;
 
 import player.Player;
 
-import entityConsole.BombUpConsole;
 import entityConsole.Console;
 import entityConsole.DestructibleBrickConsole;
 import entityConsole.IndestructibleBrickConsole;
-import entityConsole.PowerUpConsole;
-import entityConsole.SpeedUpConsole;
 import entityConsole.models.BomberCharacter;
 import update.GameUniverseViewPortImpl;
 import gameframework.game.GameData;
@@ -21,7 +18,7 @@ import gameframework.game.GameLevel;
 import gameframework.game.GameLevelDefaultImpl;
 
 public class GameLevel2 extends GameLevelDefaultImpl implements GameLevel {
-	BomberCharacter key;
+	Player key;
 
 	public GameLevel2(GameData data, Player key) {
 		super(data, 70);
@@ -57,33 +54,24 @@ public class GameLevel2 extends GameLevelDefaultImpl implements GameLevel {
 				"/Blocks/ExplodableBlock.png", 1);
 		IndestructibleBrickConsole solidBlock = new IndestructibleBrickConsole(
 				"/Blocks/SolidBlock.png", 1);
-		PowerUpConsole fp = new PowerUpConsole("/Powerups/FlamePowerup.png", 1);
-		BombUpConsole bp = new BombUpConsole("/Powerups/BombPowerup.png", 1);
-		SpeedUpConsole sp = new SpeedUpConsole("/Powerups/SpeedPowerup.png", 1);
+		
 		explodableBlock.setGameData(data);
 		solidBlock.setGameData(data);
-		fp.setGameData(data);
-		bp.setGameData(data);
-		sp.setGameData(data);
-		fp.createEntity(1, 7);
-		sp.createEntity(17, 7);
-		sp.createEntity(9, 13);
-		bp.createEntity(9, 1);
 		Methods.createMap(data, 0,
-				"1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\n" +
-				"1 0 0 2 2 0 2 2 2 0 2 2 0 0 1\n" +
-				"1 0 1 2 1 2 1 2 1 2 1 2 1 0 1\n" +
-				"1 2 2 2 0 0 2 0 2 0 0 2 2 2 1\n" +
-				"1 2 1 2 1 0 1 2 1 0 1 2 1 2 1\n" +
-				"1 2 2 0 2 2 2 0 2 2 2 0 2 2 1\n" +
-				"1 0 1 2 1 2 1 2 1 2 1 2 1 0 1\n" +
-				"1 2 2 0 2 2 2 0 2 2 2 0 2 2 1\n" +
-				"1 2 1 2 1 0 1 2 1 0 1 2 1 2 1\n" +
-				"1 2 2 2 0 0 2 0 2 0 0 2 2 2 1\n" +
-				"1 0 1 2 1 2 1 2 1 2 1 2 1 0 1\n" +
-				"1 0 0 2 2 0 2 2 2 0 2 2 0 0 1\n" +
-				"1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"
-				
+				"2 2 2 2 2 2 2 2 2 2 2 2 2 2 2\n" +
+				"2 0 0 1 1 0 1 1 1 0 1 1 0 0 2\n" +
+				"2 0 2 1 2 1 2 1 2 1 2 1 2 0 2\n" +
+				"2 1 1 1 0 0 1 0 1 0 0 1 1 1 2\n" +
+				"2 1 2 1 2 0 2 1 2 0 2 1 2 1 2\n" +
+				"2 1 1 0 1 1 1 0 1 1 1 0 1 1 2\n" +
+				"2 0 2 1 2 1 2 1 2 1 2 1 2 0 2\n" +
+				"2 1 1 0 1 1 1 0 1 1 1 0 1 1 2\n" +
+				"2 1 2 1 2 0 2 1 2 0 2 1 2 1 2\n" +
+				"2 1 1 1 0 0 1 0 1 0 0 1 1 1 2\n" +
+				"2 0 2 1 2 1 2 1 2 1 2 1 2 0 2\n" +
+				"2 0 0 1 1 0 1 1 1 0 1 1 0 0 2\n" +
+				"2 2 2 2 2 2 2 2 2 2 2 2 2 2 2"
+
 				, explodableBlock, solidBlock);
 
 		// set player

@@ -1,26 +1,22 @@
 package player;
 
-import java.awt.Point;
-
 import entityConsole.drawable.CharacterDrawable;
 import entityConsole.models.BomberCharacter;
 import gameframework.base.ObservableValue;
 import gameframework.drawing.Drawable;
 import gameframework.game.GameData;
-import gameframework.game.GameLevelDefaultImpl;
 import gameframework.motion.MoveStrategy;
-import gameframework.motion.SpeedVector;
 import gameframework.motion.overlapping.Overlappable;
 
 public class Player extends BomberCharacter implements Drawable, Overlappable {
 	ObservableValue<Integer> life;
-	GameLevelDefaultImpl level;
 	int noDamage=0;
 	public Player(GameData data, MoveStrategy strategy,
 			ObservableValue<Integer> life) {
 		super(data, strategy);
 		this.life = life;
 	}
+
 
 	@Override
 	public void initDrawable(String filename, GameData data, int maxSpriteNumber) {
@@ -29,9 +25,6 @@ public class Player extends BomberCharacter implements Drawable, Overlappable {
 		data.getOverlapProcessor().addOverlappable(this);
 	}
 
-	public void setGameLevel(GameLevelDefaultImpl level) {
-		this.level = level;
-	}
 
 	@Override
 	public void onTakingDamage() {
@@ -40,13 +33,17 @@ public class Player extends BomberCharacter implements Drawable, Overlappable {
 		this.life.setValue(this.life.getValue() - 1);
 		this.setPosition(1, 1);
 		this.noDamage=10;
-		if (this.life.getValue() <= 0 && this.level != null)
-			this.level.end();
+
+
+
+
 	}
-	
+
 	@Override
 	public void oneStepMoveAddedBehavior() {
 		super.oneStepMoveAddedBehavior();
 		if(this.noDamage>0)this.noDamage--;
+		if(this.data.getLife().getValue()<=0)this.data.getEndOfGame().setValue(true);
 	}
 }
+

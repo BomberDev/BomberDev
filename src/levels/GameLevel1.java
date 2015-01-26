@@ -11,7 +11,11 @@ import entityConsole.BombUpConsole;
 import entityConsole.Console;
 import entityConsole.DestructibleBrickConsole;
 import entityConsole.IndestructibleBrickConsole;
+<<<<<<< HEAD
 import entityConsole.MonsterConsole;
+=======
+import entityConsole.LevelClearanceConsole;
+>>>>>>> ec8d4deac396d6ab89823a3fc3ae2eb2f8ffc1a0
 import entityConsole.PowerUpConsole;
 import entityConsole.SpeedUpConsole;
 import entityConsole.models.BomberCharacter;
@@ -24,7 +28,7 @@ import gameframework.game.GameLevelDefaultImpl;
 import gameframework.motion.MoveStrategyRandom;
 
 public class GameLevel1 extends GameLevelDefaultImpl implements GameLevel {
-	BomberCharacter key;
+	Player key;
 
 	public GameLevel1(GameData data, Player key) {
 		super(data, 70);
@@ -60,13 +64,18 @@ public class GameLevel1 extends GameLevelDefaultImpl implements GameLevel {
 				"/Blocks/ExplodableBlock.png", 1);
 		IndestructibleBrickConsole solidBlock = new IndestructibleBrickConsole(
 				"/Blocks/SolidBlock.png", 1);
+		LevelClearanceConsole clear = new LevelClearanceConsole("/Blocks/Portal.png", 1, this);
 		PowerUpConsole fp = new PowerUpConsole("/Powerups/FlamePowerup.png", 1);
 		BombUpConsole bp = new BombUpConsole("/Powerups/BombPowerup.png", 1);
 		SpeedUpConsole sp = new SpeedUpConsole("/Powerups/SpeedPowerup.png", 1);
 		MonsterConsole monsters = new MonsterConsole("/Characters/ghost.png",8);
 		explodableBlock.setGameData(data);
 		solidBlock.setGameData(data);
+<<<<<<< HEAD
 		monsters.setGameData(data);
+=======
+		clear.setGameData(data);
+>>>>>>> ec8d4deac396d6ab89823a3fc3ae2eb2f8ffc1a0
 		fp.setGameData(data);
 		bp.setGameData(data);
 		sp.setGameData(data);
@@ -74,7 +83,11 @@ public class GameLevel1 extends GameLevelDefaultImpl implements GameLevel {
 		sp.createEntity(17, 7);
 		sp.createEntity(9, 13);
 		bp.createEntity(9, 1);
+<<<<<<< HEAD
 
+=======
+		clear.createEntity(9, 7);
+>>>>>>> ec8d4deac396d6ab89823a3fc3ae2eb2f8ffc1a0
 		Methods.createMap(data, 0,
 				"2222222222222222222\n" +
 				"2000000000000000002\n" +
