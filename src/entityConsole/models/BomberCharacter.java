@@ -108,6 +108,9 @@ public class BomberCharacter extends GameMovable implements BomberEntity {
 		return this.bombPower;
 	}
 
+	public CharacterDrawable getDrawable(){
+		return this.drawable;
+	}
 	private void die() {
 		this.drawable.animDying(data);
 		this.data.getUniverse().removeGameEntity(this);

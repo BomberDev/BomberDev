@@ -11,14 +11,17 @@ import entityConsole.BombUpConsole;
 import entityConsole.Console;
 import entityConsole.DestructibleBrickConsole;
 import entityConsole.IndestructibleBrickConsole;
+import entityConsole.MonsterConsole;
 import entityConsole.PowerUpConsole;
 import entityConsole.SpeedUpConsole;
 import entityConsole.models.BomberCharacter;
+import entityConsole.models.Monster;
 import update.GameUniverseViewPortImpl;
 import gameframework.game.GameData;
 import gameframework.game.GameEntity;
 import gameframework.game.GameLevel;
 import gameframework.game.GameLevelDefaultImpl;
+import gameframework.motion.MoveStrategyRandom;
 
 public class GameLevel1 extends GameLevelDefaultImpl implements GameLevel {
 	BomberCharacter key;
@@ -60,8 +63,10 @@ public class GameLevel1 extends GameLevelDefaultImpl implements GameLevel {
 		PowerUpConsole fp = new PowerUpConsole("/Powerups/FlamePowerup.png", 1);
 		BombUpConsole bp = new BombUpConsole("/Powerups/BombPowerup.png", 1);
 		SpeedUpConsole sp = new SpeedUpConsole("/Powerups/SpeedPowerup.png", 1);
+		MonsterConsole monsters = new MonsterConsole("/Characters/ghost.png",8);
 		explodableBlock.setGameData(data);
 		solidBlock.setGameData(data);
+		monsters.setGameData(data);
 		fp.setGameData(data);
 		bp.setGameData(data);
 		sp.setGameData(data);
@@ -69,6 +74,7 @@ public class GameLevel1 extends GameLevelDefaultImpl implements GameLevel {
 		sp.createEntity(17, 7);
 		sp.createEntity(9, 13);
 		bp.createEntity(9, 1);
+
 		Methods.createMap(data, 0,
 				"2222222222222222222\n" +
 				"2000000000000000002\n" +
@@ -87,11 +93,14 @@ public class GameLevel1 extends GameLevelDefaultImpl implements GameLevel {
 				"2222222222222222222"
 				
 				, explodableBlock, solidBlock);
-
+		monsters.createEntity(10, 7);
+		monsters.createEntity(9, 7);
 		// set player
 		universe.addGameEntity(key);
 		key.setPosition(1, 1);
 		key.setGameData(data);
+		
+		
 	}
 
 }
