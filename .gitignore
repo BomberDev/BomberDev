@@ -13,5 +13,5 @@
 hs_err_pid*
 /bin/
 .project
-
+.db
 .DS_Store
