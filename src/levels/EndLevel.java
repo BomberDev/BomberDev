@@ -58,7 +58,6 @@ public class EndLevel extends GameLevelDefaultImpl implements GameLevel {
 			solidBlock.createEntity(0, i);
 		for (int i = 1; i < 14; i++)
 			solidBlock.createEntity(18, i);
-
 	}
 
 }
