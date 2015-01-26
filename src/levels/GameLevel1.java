@@ -11,6 +11,7 @@ import entityConsole.BombUpConsole;
 import entityConsole.Console;
 import entityConsole.DestructibleBrickConsole;
 import entityConsole.IndestructibleBrickConsole;
+import entityConsole.LevelClearanceConsole;
 import entityConsole.PowerUpConsole;
 import entityConsole.SpeedUpConsole;
 import entityConsole.models.BomberCharacter;
@@ -21,7 +22,7 @@ import gameframework.game.GameLevel;
 import gameframework.game.GameLevelDefaultImpl;
 
 public class GameLevel1 extends GameLevelDefaultImpl implements GameLevel {
-	BomberCharacter key;
+	Player key;
 
 	public GameLevel1(GameData data, Player key) {
 		super(data, 70);
@@ -57,11 +58,13 @@ public class GameLevel1 extends GameLevelDefaultImpl implements GameLevel {
 				"/Blocks/ExplodableBlock.png", 1);
 		IndestructibleBrickConsole solidBlock = new IndestructibleBrickConsole(
 				"/Blocks/SolidBlock.png", 1);
+		LevelClearanceConsole clear = new LevelClearanceConsole("/Blocks/Portal.png", 1, this);
 		PowerUpConsole fp = new PowerUpConsole("/Powerups/FlamePowerup.png", 1);
 		BombUpConsole bp = new BombUpConsole("/Powerups/BombPowerup.png", 1);
 		SpeedUpConsole sp = new SpeedUpConsole("/Powerups/SpeedPowerup.png", 1);
 		explodableBlock.setGameData(data);
 		solidBlock.setGameData(data);
+		clear.setGameData(data);
 		fp.setGameData(data);
 		bp.setGameData(data);
 		sp.setGameData(data);
@@ -69,6 +72,7 @@ public class GameLevel1 extends GameLevelDefaultImpl implements GameLevel {
 		sp.createEntity(17, 7);
 		sp.createEntity(9, 13);
 		bp.createEntity(9, 1);
+		clear.createEntity(9, 7);
 		Methods.createMap(data, 0,
 				"2222222222222222222\n" +
 				"2000000000000000002\n" +

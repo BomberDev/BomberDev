@@ -3,6 +3,8 @@ package levels;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import other.Methods;
+
 import entityConsole.Console;
 import entityConsole.DestructibleBrickConsole;
 import entityConsole.IndestructibleBrickConsole;
@@ -24,7 +26,7 @@ public class EndLevel extends GameLevelDefaultImpl implements GameLevel {
 		this.universe = data.getUniverse();
 		this.gameBoard = new GameUniverseViewPortImpl();
 		gameBoard.setGameData(data);
-
+		data.getEndOfGame().setValue(true);
 		// clear last game level
 		Iterator<GameEntity> it = universe.getGameEntitiesIterator();
 		LinkedList<GameEntity> tmp = new LinkedList<GameEntity>();
@@ -58,6 +60,7 @@ public class EndLevel extends GameLevelDefaultImpl implements GameLevel {
 			solidBlock.createEntity(0, i);
 		for (int i = 1; i < 14; i++)
 			solidBlock.createEntity(18, i);
+		
 	}
 
 }

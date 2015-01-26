@@ -11,6 +11,7 @@ import gameframework.gui.GameStatusBarElement;
 import gameframework.gui.GameWindow;
 import levels.EndLevel;
 import levels.GameLevel1;
+import levels.GameLevel2;
 import other.PlayerKeyboard;
 import player.Player;
 import update.Config;
@@ -48,9 +49,9 @@ public class Main {
 
 		// add level should after create player
 		GameLevel level = new GameLevel1(gameData, player);
-		GameLevel end = new EndLevel(gameData);
 		gameData.addLevel(level);
-		gameData.addLevel(end);
+		gameData.addLevel(new GameLevel2(gameData, player));
+		gameData.addLevel(new EndLevel(gameData));
 
 		// Init gui
 		Game game = new GameDefaultImpl(gameData);
